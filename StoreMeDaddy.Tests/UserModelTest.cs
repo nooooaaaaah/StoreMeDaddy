@@ -31,6 +31,19 @@ public class UserModelTests
     }
 
     [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestUserContainsSpecialCharacter()
+    {
+        _ = new UserModel("XXX@XXXXX", "password");
+    }
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestPasswordMissingSpecialCharacter()
+    {
+        _ = new UserModel("XXXXXXXX", "password");
+    }
+
+    [TestMethod]
     public void TestUserCanBeCreated()
     {
         UserModel user = new("XXXXXXXX", "p@ssword");

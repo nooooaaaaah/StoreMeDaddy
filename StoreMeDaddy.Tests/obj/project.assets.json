@@ -397,6 +397,10 @@
       "StoreMeDaddy/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "MSTest.TestAdapter": "2.2.10",
+          "MSTest.TestFramework": "2.2.10"
+        },
         "compile": {
           "bin/placeholder/StoreMeDaddy.dll": {}
         },

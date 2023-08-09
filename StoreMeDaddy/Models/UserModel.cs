@@ -1,11 +1,15 @@
+using System.Text;
+using HashSlingingSlasher;
+
 namespace StoreMeDaddy.Models
 {
     public class UserModel
     {
         public string Username { get; set; }
-        public string Password { get; set; }
+        public byte[] Hash { get; set; }
+        public byte[] Salt { get; set; }
 
-        private static readonly string SpecialChars = @"%!#$%^&*()?/><,|}]{~`+=";
+        private static readonly string SpecialChars = @"@%!#$%^&*()?/><,|}]{~`+=";
         public UserModel(string username, string password)
         {
             if (username == null)
@@ -24,8 +28,10 @@ namespace StoreMeDaddy.Models
             {
                 throw new ArgumentException("Password must be at least 3 characters long. Password must contain at least one special character");
             }
+            PasswordHasher.CreatePasswordHash(password, out byte[] salt, out byte[] hash);
             Username = username;
-            Password = password;
+            Salt = salt;
+            Hash = hash;
         }
     }
 }
