@@ -14,9 +14,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.3" />
     <Reference Include="HashSlingingSlasher" HintPath="/Users/noahspielman/Projects/tools/HashSlingingSlasher/bin/Debug/net7.0/HashSlingingSlasher.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Reference Include="CoinMachine" HintPath="/Users/noahspielman/Projects/tools/CoinMachine/bin/Debug/net7.0/CoinMachine.dll" />
     <Folder Include="Interfaces/" />
   </ItemGroup>
 
