@@ -1,0 +1,136 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/StoreMeDaddy.Tests.csproj": {}
+  },
+  "projects": {
+    "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/StoreMeDaddy.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/StoreMeDaddy.Tests.csproj",
+        "projectName": "StoreMeDaddy.Tests",
+        "projectPath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/StoreMeDaddy.Tests.csproj",
+        "packagesPath": "/Users/noahspielman/.nuget/packages/",
+        "outputPath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/noahspielman/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/StoreMeDaddy.csproj": {
+                "projectPath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/StoreMeDaddy.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/StoreMeDaddy.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/StoreMeDaddy.csproj",
+        "projectName": "StoreMeDaddy",
+        "projectPath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/StoreMeDaddy.csproj",
+        "packagesPath": "/Users/noahspielman/.nuget/packages/",
+        "outputPath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/noahspielman/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
