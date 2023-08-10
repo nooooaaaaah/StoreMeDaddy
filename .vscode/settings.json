@@ -1,3 +1,6 @@
 {
-    "dotnet.defaultSolution": "FileServer.sln"
+    "dotnet.defaultSolution": "FileServer.sln",
+    "cSpell.words": [
+        "storemedaddy"
+    ]
 }

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Moq" Version="4.20.2" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1">
     </PackageReference>
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
@@ -19,6 +20,7 @@
 
   <ItemGroup><!-- <ProjectReference Include="..\StoreMeDaddy.csproj" /> -->
   
+    <Reference Include="HashSlingingSlasher" HintPath="/Users/noahspielman/Projects/tools/HashSlingingSlasher/bin/Debug/net7.0/HashSlingingSlasher.dll" />
     <ProjectReference Include="..\StoreMeDaddy\StoreMeDaddy.csproj" />
   </ItemGroup>
 

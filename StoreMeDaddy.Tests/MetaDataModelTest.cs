@@ -77,7 +77,6 @@ public class MetaDataModelTests
         Assert.AreEqual(now, metaData.AccessedAt);
         Assert.AreEqual(createdByUser, metaData.CreatedByUser);
         Assert.AreEqual(hash, metaData.Hash);
-        Console.WriteLine(metaData.ToString());
     }
 }
 

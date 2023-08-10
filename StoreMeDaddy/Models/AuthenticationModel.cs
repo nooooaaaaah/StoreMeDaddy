@@ -7,11 +7,11 @@ public class AuthenticationModel
     {
         if (string.IsNullOrEmpty(username))
         {
-            throw new ArgumentNullException("username");
+            throw new ArgumentNullException(nameof(username));
         }
         if (string.IsNullOrEmpty(password))
         {
-            throw new ArgumentNullException("password");
+            throw new ArgumentNullException(nameof(password));
         }
         Username = username;
         Password = password;

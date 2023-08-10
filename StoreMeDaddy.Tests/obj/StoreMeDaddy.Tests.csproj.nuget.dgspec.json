@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[17.5.0, )"
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.2, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[3.2.0, )"
@@ -120,6 +124,30 @@
             "MSTest.TestFramework": {
               "target": "Package",
               "version": "[2.2.10, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
