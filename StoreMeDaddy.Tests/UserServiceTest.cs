@@ -1,10 +1,28 @@
 using Microsoft.EntityFrameworkCore;
-using Moq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StoreMeDaddy.Models;
 using StoreMeDaddy.Services;
+using System.Threading.Tasks;
 
 namespace StoreMeDaddy.Tests
 {
+    public class TestStoreMeDaddyContext : StoreMeDaddyContext
+    {
+        public TestStoreMeDaddyContext(DbContextOptions<StoreMeDaddyContext> options)
+            : base(options)
+        { }
+
+        public TestStoreMeDaddyContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // Override the SQLite configuration and use the In-Memory provider
+            optionsBuilder.UseInMemoryDatabase("TestDatabase");
+        }
+    }
+
     [TestClass]
     public class UserServiceTests
     {
@@ -12,27 +30,29 @@ namespace StoreMeDaddy.Tests
         public async Task Authenticate_ValidCredentials_ReturnsUser()
         {
             // Arrange
-            UserModel user = new ("testUser", "p@ssword");
+            var options = new DbContextOptionsBuilder<TestStoreMeDaddyContext>()
+                .UseInMemoryDatabase(databaseName: "Authenticate_ValidCredentials_ReturnsUser")
+                .Options;
 
-            IQueryable<UserModel> users = new List<UserModel> { user }.AsQueryable();
+            using (var context = new TestStoreMeDaddyContext(options))
+            {
+                UserModel user = new ( "testuser", "p@ssword" );
+                context.Users.Add(user);
+                await context.SaveChangesAsync();
+            }
 
-            Mock<DbSet<UserModel>> mockSet = new();
-            mockSet.As<IQueryable<UserModel>>().Setup(m => m.Provider).Returns(users.Provider);
-            mockSet.As<IQueryable<UserModel>>().Setup(m => m.Expression).Returns(users.Expression);
-            mockSet.As<IQueryable<UserModel>>().Setup(m => m.ElementType).Returns(users.ElementType);
-            mockSet.As<IQueryable<UserModel>>().Setup(m => m.GetEnumerator()).Returns(users.GetEnumerator());
+            using (var context = new TestStoreMeDaddyContext(options))
+            {
+                var service = new UserService(context);
 
-            var mockContext = new Mock<StoreMeDaddyContext>();
-            mockContext.Setup(c => c.Users).Returns(mockSet.Object);
+                // Act
+                var result = await service.Authenticate("testuser", "p@ssword");
 
-            var service = new UserService(mockContext.Object);
-
-            // Act
-            var result = await service.Authenticate("testUser", "p@ssword");
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual("testUser", result.Username);
+                // Assert
+                Assert.IsNotNull(result);
+                Assert.AreEqual("testuser", result.Username);
+            }
         }
+
     }
 }

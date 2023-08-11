@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VPAcE0tq+lpBh6oOR/aw+7KjFComIZJpkrz8x8uQBbY3J5cixolM7TFlng49TPo2UcnLE8KMmqSwBh9fW9/z9A==",
+  "dgSpecHash": "myeZvwgTWyK1BOLcvvdOrHQifU96wmQ/muGSbRuyqU6faqQGgFBuIyBVgfOQLvsufESY891dIFWqmzCVqn2gAw==",
   "success": true,
   "projectFilePath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/StoreMeDaddy.Tests.csproj",
   "expectedPackageFiles": [
@@ -18,6 +18,7 @@
     "/Users/noahspielman/.nuget/packages/microsoft.entityframeworkcore/7.0.10/microsoft.entityframeworkcore.7.0.10.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.10/microsoft.entityframeworkcore.abstractions.7.0.10.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.10/microsoft.entityframeworkcore.analyzers.7.0.10.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/microsoft.entityframeworkcore.inmemory/7.0.10/microsoft.entityframeworkcore.inmemory.7.0.10.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.10/microsoft.entityframeworkcore.relational.7.0.10.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.entityframeworkcore.sqlite/7.0.10/microsoft.entityframeworkcore.sqlite.7.0.10.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/7.0.10/microsoft.entityframeworkcore.sqlite.core.7.0.10.nupkg.sha512",
