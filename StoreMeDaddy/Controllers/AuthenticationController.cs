@@ -32,15 +32,8 @@ public class AuthenticationController : ControllerBase
         if (user == null)
             return BadRequest(new { message = "Username or password is incorrect" });
         IUser userAdapter = new UserSessionAdapter(user);
-        // Console.WriteLine($"UserName: {userAdapter.Username}");
-        // Console.WriteLine($"UserId: {userAdapter.UserID}");
-        // Console.WriteLine($"UserRole: {userAdapter.Role}");
         string token = _tokenService.GenerateToken(userAdapter);
-        // Console.WriteLine(_tokenService.ToString());
-        // Console.WriteLine($"Raw token: {token}");
-        // JwtSecurityTokenHandler jwtHandler = new();
-        // Console.WriteLine($"token: {jwtHandler.ReadJwtToken(token)}");
-        return Ok(new { Token =token });
+        return Ok(new { Token = token });
     }
 
 }
