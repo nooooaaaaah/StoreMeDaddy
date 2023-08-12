@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StoreMeDaddy.Models;
 using StoreMeDaddy.Services;
-using System.Threading.Tasks;
 
 namespace StoreMeDaddy.Tests
 {
@@ -36,7 +34,7 @@ namespace StoreMeDaddy.Tests
 
             using (var context = new TestStoreMeDaddyContext(options))
             {
-                UserModel user = new ( "testuser", "p@ssword" );
+                UserModel user = new ( "testuser", "p@ssword", "user" );
                 context.Users.Add(user);
                 await context.SaveChangesAsync();
             }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 public interface IUserService
 {
-
+    Task<UserModel> Authenticate(string username, string password);
 }
 public class UserService : IUserService
 

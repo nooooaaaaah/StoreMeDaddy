@@ -8,6 +8,7 @@ public class UserModel
 {
     public int Id { get; set; }
     public string Username { get; set; }
+    public string Role { get; set; }
     public byte[] Hash { get; set; }
     public byte[] Salt { get; set; }
 
@@ -17,8 +18,9 @@ public class UserModel
         Username = string.Empty;
         Hash = Array.Empty<byte>();
         Salt = Array.Empty<byte>();
+        Role = string.Empty;
     }
-    public UserModel(string username, string password)
+    public UserModel(string username, string password, string role)
     {
         if (username == null)
         {
@@ -41,5 +43,6 @@ public class UserModel
         Username = username;
         Salt = salt;
         Hash = hash;
+        Role = role;
     }
 }

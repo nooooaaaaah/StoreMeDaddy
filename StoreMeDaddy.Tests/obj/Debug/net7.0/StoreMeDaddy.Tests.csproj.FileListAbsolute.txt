@@ -150,10 +150,12 @@
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/runtimes/win-arm64/native/e_sqlite3.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/runtimes/win-x86/native/e_sqlite3.dll
+/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/CoinMachine.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/HashSlingingSlasher.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/StoreMeDaddy.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/StoreMeDaddy.pdb
+/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/CoinMachine.pdb
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/HashSlingingSlasher.pdb
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/bin/Debug/net7.0/Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/obj/Debug/net7.0/StoreMeDaddy.Tests.csproj.AssemblyReference.cache
