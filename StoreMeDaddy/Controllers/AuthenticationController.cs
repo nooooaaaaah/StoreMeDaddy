@@ -6,7 +6,6 @@ using StoreMeDaddy.Services;
 using Microsoft.Extensions.DependencyInjection;
 using StoreMeDaddy.Models;
 using StoreMeDaddy.Adapters;
-using System.IdentityModel.Tokens.Jwt;
 
 [Authorize]
 [ApiController]

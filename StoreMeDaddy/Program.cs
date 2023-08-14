@@ -17,7 +17,7 @@ builder.Services.AddSingleton<ITokenService>(provider =>
 {
     TokenSettings tokenSettings = provider.GetRequiredService<IOptions<TokenSettings>>().Value;
     ILogger<TokenService> logger = provider.GetRequiredService<ILogger<TokenService>>();
-    return new TokenService(tokenSettings.SecretKey, tokenSettings.Issuer, tokenSettings.ExpiryMinutes);
+    return new TokenService(tokenSettings.SecretKey, tokenSettings.Issuer, tokenSettings.ExpiryMinutes, tokenSettings.Roles);
 });
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
 
@@ -38,17 +38,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["TokenSettings:Issuer"],
             ValidAudience = builder.Configuration["TokenSettings:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKeyConfig))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKeyConfig)),
+            LifetimeValidator = (DateTime? before, DateTime? expires, SecurityToken token, TokenValidationParameters parameters) =>
+            {
+                if (expires.HasValue)
+                {
+                    return expires > DateTime.UtcNow;
+                }
+                return false;
+            }
         };
     });
 
-
 WebApplication app = builder.Build();
-
-// Use authentication and authorization middleware
 app.UseAuthentication();
 app.UseAuthorization();
-
-// Other middleware registrations and configurations
-
 app.Run();
