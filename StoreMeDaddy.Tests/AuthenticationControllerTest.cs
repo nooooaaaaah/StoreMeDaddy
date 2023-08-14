@@ -21,7 +21,7 @@ namespace StoreMeDaddy.Tests
             string secretKey = "your-secret-key-with-16bytes"; // Replace with a real key
             string issuer = "your-issuer";
             int expiryMinutes = 60;
-            ITokenService tokenService = new TokenService(secretKey, issuer, expiryMinutes);
+            ITokenService tokenService = new TokenService(secretKey, issuer, expiryMinutes, new List<string>() { "user" });
 
             AuthenticationController controller = new(tokenService, userServiceMock.Object);
 

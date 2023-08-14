@@ -7,6 +7,7 @@ using System.Security.Claims;
 public interface IUserService
 {
     Task<UserModel> Authenticate(string username, string password);
+    Task<UserModel> CreateUserAsync(UserModel user, string password);
     Task<UserModel> DeleteUserAsync(ClaimsPrincipal user);
     Task<UserModel> GetUserAsync(ClaimsPrincipal user);
     Task<UserModel> UpdateUserAsync(UserModel user);
@@ -22,7 +23,9 @@ public class UserService : IUserService
     public async Task<UserModel> Authenticate(string username, string password)
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        {
             throw new Exception("Username or password is empty");
+        }
         if (!await _context.Users.AnyAsync(x => x.Username == username))
         {
             throw new Exception("Username not found");
@@ -44,8 +47,7 @@ public class UserService : IUserService
         // Retrieve the user by ID from the database
         UserModel user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId) ?? throw new Exception("User not found in the database.");
         return user;
-    }
-
+    } 
     public async Task<UserModel> UpdateUserAsync(UserModel user)
     {
         if (user == null)
@@ -69,5 +71,21 @@ public class UserService : IUserService
         _context.Users.Remove(userModel);
         await _context.SaveChangesAsync();
         return userModel;
+    }
+
+    public async Task<UserModel> CreateUserAsync(UserModel user, string password)
+    {
+        if (user == null)
+            throw new Exception("User is null");
+        if (await _context.Users.AnyAsync(x => x.Username == user.Username))
+        {
+            throw new Exception("Username already exists");
+        }
+        PasswordHasher.CreatePasswordHash(password, out byte[] hash, out byte[] salt);
+        user.Hash = hash;
+        user.Salt = salt;
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+        return user;
     }
 }
