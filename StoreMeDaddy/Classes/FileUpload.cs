@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 public class FileUploadModel
 {
-    public required IFormFile File { get; set; }
+    public  IFormFile File { get; set; }
     public string FileName { get; set; }
     public string Description { get; set; }
     public int? FolderId { get; set; }
@@ -25,6 +25,4 @@ public class FileUploadModel
         Hash = hash ?? throw new ArgumentNullException(nameof(hash));
         OwnerId = ownerId;
     }
-    
-    
 }

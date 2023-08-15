@@ -18,7 +18,7 @@ namespace StoreMeDaddy.Tests
             Mock<IUserService> userServiceMock = new();
             userServiceMock.Setup(x => x.Authenticate(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new UserModel("ValidUsername", "V@lidPassword", "user"));
 
-            string secretKey = "your-secret-key-with-16bytes"; // Replace with a real key
+            string secretKey = "your-secret-key-with-16bytes"; 
             string issuer = "your-issuer";
             int expiryMinutes = 60;
             ITokenService tokenService = new TokenService(secretKey, issuer, expiryMinutes, new List<string>() { "user" });
