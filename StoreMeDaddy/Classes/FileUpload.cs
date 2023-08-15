@@ -10,10 +10,11 @@ public class FileUploadModel
     public bool IsPublic { get; set; }
     public DateTime? ExpirationDate { get; set; }
     public string? Version { get; set; }
-    public string Hash { get; set; }
+    public long Size { get; set; }
+    public string Type { get; set; }
     public int OwnerId { get; set; }
 
-    public FileUploadModel(IFormFile file, string fileName, string? description, int? folderId, bool isPublic, DateTime? expirationDate, string? version, string hash, int ownerId)
+    public FileUploadModel(IFormFile file, string fileName, string? description, int? folderId, bool isPublic, DateTime? expirationDate, string? version, string type, int ownerId)
     {
         File = file ?? throw new ArgumentNullException(nameof(file));
         FileName = fileName ?? throw new ArgumentNullException(nameof(fileName));
@@ -22,7 +23,8 @@ public class FileUploadModel
         IsPublic = isPublic;
         ExpirationDate = expirationDate;
         Version = version;
-        Hash = hash ?? throw new ArgumentNullException(nameof(hash));
+        Size = file.Length;
+        Type = type;
         OwnerId = ownerId;
     }
 }
