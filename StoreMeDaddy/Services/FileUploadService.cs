@@ -13,7 +13,7 @@ public interface IFileUploadService
 public class FileUploadService : IFileUploadService
 {
     private readonly StoreMeDaddyContext _context;
-    private readonly string _uploadPath; // The path to where the files will be stored
+    private readonly string _uploadPath; 
 
     public FileUploadService(StoreMeDaddyContext context, string uploadPath)
     {
