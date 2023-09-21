@@ -15,8 +15,10 @@ public class MetaDataModel
     public DateTime AccessedAt { get; set; }
     public string CreatedByUser { get; set; }
     public string Hash { get; set; }
+    public byte[] Salt { get; set; }
+    public byte[] IV { get; set; }
 
-    public MetaDataModel(string FileName, string description, string path, long size, string type, bool isPublic, bool isDeleted, string? version, string createdByUser, string hash)
+    public MetaDataModel(string FileName, string description, string path, long size, string type, bool isPublic, bool isDeleted, string? version, string createdByUser, string hash, byte[] salt, byte[] iv)
     {
 
         if (string.IsNullOrEmpty(hash))
@@ -36,6 +38,8 @@ public class MetaDataModel
         AccessedAt = CreatedAt;
         CreatedByUser = createdByUser ?? throw new ArgumentNullException(nameof(createdByUser));
         Hash = hash.Length != 64 ? throw new ArgumentException("Invalid hash", nameof(hash)) : hash;
+        Salt = salt;
+        IV = iv;
     }
     public override string ToString()
     {
