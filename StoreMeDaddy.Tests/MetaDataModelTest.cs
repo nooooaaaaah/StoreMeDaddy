@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Xml.Serialization;
 using StoreMeDaddy.Models;
 namespace StoreMeDaddy.Tests;
 
@@ -5,59 +7,87 @@ namespace StoreMeDaddy.Tests;
 [TestClass]
 public class MetaDataModelTests
 {
+    readonly byte[] salt = new byte[16];
+    private readonly Aes _aes = Aes.Create();
+
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestNameCannotBeNull()
     {
-        _ = new MetaDataModel(null, "", "path", 100, "type", true, false, null, "user", "0123456789012345678901234567890123456789012345678901234567");
+        _aes.GenerateIV();
+        // RandomNumberGenerator.Fill(salt);
+        _ = new MetaDataModel(null, "", "path", 100, "type", true, false, null, "user", "0123456789012345678901234567890123456789012345678901234567", salt, _aes.IV);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestPathCannotBeNull()
     {
-        _ = new MetaDataModel("name", "", null, 100, "type", true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567");
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", null, 100, "type", true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567", salt, _aes.IV);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestTypeCannotBeNull()
     {
-        _ = new MetaDataModel("name", "", "path", 100, null, true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567");
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", 100, null, true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567", salt, _aes.IV);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestCreatedByUserCannotBeNull()
     {
-        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", null, "0123456789012345678901234567890123456789012345678901234567");
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", null, "0123456789012345678901234567890123456789012345678901234567", salt, _aes.IV);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestHashCannotBeNull()
     {
-        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", "user", null);
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", "user", null, salt, _aes.IV);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void TestInvalidSize()
     {
-        _ = new MetaDataModel("name", "", "path", -1, "type", true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567");
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", -1, "type", true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567", salt, _aes.IV);
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void TestInvalidHash()
     {
-        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", "user", "invalid-hash");
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", "user", "invalid-hash", salt, _aes.IV);
     }
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void TestInvalidVersion()
     {
-        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, null, "user", "0123456789012345678901234567890123456789012345678901234567");
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, null, "user", "0123456789012345678901234567890123456789012345678901234567", salt, _aes.IV);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestNullSalt()
+    {
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567", null, _aes.IV);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestNullIV()
+    {
+        _aes.GenerateIV();
+        _ = new MetaDataModel("name", "", "path", 100, "type", true, false, "1", "user", "0123456789012345678901234567890123456789012345678901234567", salt, null);
     }
 
     [TestMethod]
@@ -75,7 +105,8 @@ public class MetaDataModelTests
         string createdByUser = "user";
         string hash = "1111111111111111111111111111111111111111111111111111111111111111";
 
-        MetaDataModel metaData = new(name, description, path, size, type, isPublic, isDeleted, version, createdByUser, hash);
+        _aes.GenerateIV();
+        MetaDataModel metaData = new(name, description, path, size, type, isPublic, isDeleted, version, createdByUser, hash, salt, _aes.IV);
         DateTime timeCreated = metaData.CreatedAt;
         Console.WriteLine($"Time created: {timeCreated}");
         Assert.AreEqual(name, metaData.FileName);
