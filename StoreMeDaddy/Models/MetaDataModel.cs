@@ -1,3 +1,5 @@
+#pragma warning disable CS8618 // Non-nullable field is uninitialized.
+
 namespace StoreMeDaddy.Models;
 public class MetaDataModel
 {
@@ -41,12 +43,14 @@ public class MetaDataModel
         Salt = salt;
         IV = iv;
     }
+    
+    /* Parameterless constructor for EF Core */
+    public MetaDataModel()
+    {
+    }
     public override string ToString()
     {
         return $"{FileName},{Description},{Path},{Size},{Type},{IsPublic},{IsDeleted},{Version},{CreatedAt},{ModifiedAt},{AccessedAt},{CreatedByUser},{Hash}";
     }
 }
-
-
-
-
+#pragma warning restore CS8618
