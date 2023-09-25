@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using StoreMeDaddy.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLogging();
@@ -20,12 +21,10 @@ builder.Services.AddSingleton<ITokenService>(provider =>
     return new TokenService(tokenSettings.SecretKey, tokenSettings.Issuer, tokenSettings.ExpiryMinutes, tokenSettings.Roles);
 });
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
+string secretKeyConfig = builder.Configuration["TokenSettings:SecretKey"] ?? throw new InvalidOperationException("Secret key must be defined in the configuration.");
 
-string? secretKeyConfig = builder.Configuration["TokenSettings:SecretKey"];
-if (string.IsNullOrEmpty(secretKeyConfig))
-{
-    throw new InvalidOperationException("Secret key must be defined in the configuration.");
-}
+
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
