@@ -1,15 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "myeZvwgTWyK1BOLcvvdOrHQifU96wmQ/muGSbRuyqU6faqQGgFBuIyBVgfOQLvsufESY891dIFWqmzCVqn2gAw==",
+  "dgSpecHash": "lHtjfERa9HK0KN/U9z7/gQeSCBh/e3gmLWJn/WON7i3qVfT6ZLrVNXI3x/FaxbSBi5zCV/ZfQouMQer4dfgbpA==",
   "success": true,
   "projectFilePath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy.Tests/StoreMeDaddy.Tests.csproj",
   "expectedPackageFiles": [
     "/Users/noahspielman/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/coinmachine/1.0.0/coinmachine.1.0.0.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/hashslingingslasher/1.0.0/hashslingingslasher.1.0.0.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.3/microsoft.aspnetcore.authentication.jwtbearer.7.0.3.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.authorization/7.0.3/microsoft.aspnetcore.authorization.7.0.3.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.3/microsoft.aspnetcore.cryptography.internal.7.0.3.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/7.0.3/microsoft.aspnetcore.cryptography.keyderivation.7.0.3.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.3/microsoft.aspnetcore.identity.entityframeworkcore.7.0.3.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.metadata/7.0.3/microsoft.aspnetcore.metadata.7.0.3.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/microsoft.codecoverage/17.5.0/microsoft.codecoverage.17.5.0.nupkg.sha512",
@@ -60,5 +64,12 @@
     "/Users/noahspielman/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://192.168.88.239:5555/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }

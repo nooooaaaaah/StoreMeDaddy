@@ -20,6 +20,7 @@
           "net7.0"
         ],
         "sources": {
+          "http://192.168.88.239:5555/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -103,6 +104,7 @@
           "net7.0"
         ],
         "sources": {
+          "http://192.168.88.239:5555/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -121,6 +123,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "CoinMachine": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "HashSlingingSlasher": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "MSTest.TestAdapter": {
               "target": "Package",
               "version": "[2.2.10, )"
