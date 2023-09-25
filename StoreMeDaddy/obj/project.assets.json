@@ -2,6 +2,30 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "CoinMachine/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.3"
+        },
+        "compile": {
+          "lib/net7.0/CoinMachine.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/CoinMachine.dll": {}
+        }
+      },
+      "HashSlingingSlasher/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0"
+        },
+        "compile": {
+          "lib/net7.0/HashSlingingSlasher.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/HashSlingingSlasher.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.3": {
         "type": "package",
         "dependencies": {
@@ -64,6 +88,39 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
             "related": ".xml"
           }
         }
@@ -2273,6 +2330,28 @@
     }
   },
   "libraries": {
+    "CoinMachine/1.0.0": {
+      "sha512": "7lzI3h3d3We15LGMiocDonfAQin+vjdk23HM6hkW/3pfSpTXugXJ+0SBNqEixYrgVLNNIPxWqWpqsk+d6nu7nA==",
+      "type": "package",
+      "path": "coinmachine/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "coinmachine.1.0.0.nupkg.sha512",
+        "coinmachine.nuspec",
+        "lib/net7.0/CoinMachine.dll"
+      ]
+    },
+    "HashSlingingSlasher/1.0.0": {
+      "sha512": "Dn5dEcyYcOvU16X7H1Xj7SL6tQKZw20KNo288V5w1lT44a3iDHWlMm7DI2g0/d/45ANuHVMP8gbQC6Eo7Z5k7Q==",
+      "type": "package",
+      "path": "hashslingingslasher/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "hashslingingslasher.1.0.0.nupkg.sha512",
+        "hashslingingslasher.nuspec",
+        "lib/net7.0/HashSlingingSlasher.dll"
+      ]
+    },
     "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.3": {
       "sha512": "LoWGXSI5P67sjTVEcUf0u37Ms9t/jEUyW462M6CAOfs48Gug2InaBXkt+dUYxkwtD4+WH4blafqF9Es2SrBBEw==",
       "type": "package",
@@ -2343,6 +2422,32 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "microsoft.aspnetcore.cryptography.keyderivation.7.0.3.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+      "sha512": "Nxs7Z1q3f1STfLYKJSVXCs1iBl+Ya6E8o4Oy1bCxJ/rNI44E/0f6tbsrVqAWfB7jlnJfyaAtIalBVxPKUPQb4Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.xml",
+        "microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/2.2.0": {
+      "sha512": "ziFz5zH8f33En4dX81LW84I6XrYXKf9jg6aM39cM+LffN9KJahViKZ61dGMSO2gd3e+qe5yBRwsesvyqlZaSMg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.3": {
@@ -7378,6 +7483,8 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "CoinMachine >= 1.0.0",
+      "HashSlingingSlasher >= 1.0.0",
       "MSTest.TestAdapter >= 2.2.10",
       "MSTest.TestFramework >= 2.2.10",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.3",
@@ -7407,6 +7514,7 @@
         "net7.0"
       ],
       "sources": {
+        "http://192.168.88.239:5555/v3/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7425,6 +7533,14 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "CoinMachine": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "HashSlingingSlasher": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "MSTest.TestAdapter": {
             "target": "Package",
             "version": "[2.2.10, )"
@@ -7477,5 +7593,13 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://192.168.88.239:5555/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }

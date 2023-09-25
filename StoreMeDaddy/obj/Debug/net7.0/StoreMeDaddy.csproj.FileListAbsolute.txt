@@ -64,8 +64,6 @@
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/bin/Debug/net7.0/CoinMachine.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/bin/Debug/net7.0/HashSlingingSlasher.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/bin/Debug/net7.0/Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
-/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/bin/Debug/net7.0/HashSlingingSlasher.pdb
-/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/bin/Debug/net7.0/CoinMachine.pdb
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/bin/Debug/net7.0/Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.csproj.AssemblyReference.cache
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.GeneratedMSBuildEditorConfig.editorconfig
