@@ -76,3 +76,12 @@ License
 -------
 
 This project is licensed under the MIT License. See the [LICENSE.md](./LICENSE.md) file for details.
+
+
+### Some Shit I'll Eventually Get Too
+1. Actually finish core components of a file server
+2. UI and CLI
+3. Distribute as Docker Container
+4. Maybe some documention (Id have to understand what i wrote first though)
+5. Understand what this app I wrote actually does
+6. Write an actual ReadMe instead of the ChatGpt generated balderdash (Did I use this right? I just googled synonym for nonsense)
