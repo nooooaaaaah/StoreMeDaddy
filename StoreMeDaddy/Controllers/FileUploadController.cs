@@ -2,7 +2,8 @@ namespace StoreMeDaddy.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using StoreMeDaddy.Services;
 using Microsoft.AspNetCore.Authorization;
-using StoreMeDaddy.Classes;
+using StoreMeDaddy.Objects;
+using Microsoft.AspNetCore.Http;
 
 [Authorize]
 [ApiController]
@@ -17,9 +18,9 @@ public class FileUploadController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> UploadFile(FileUploadModel fileUploadModel)
+    public async Task<IActionResult> UploadFile(IFormFile file)
     {
-        var result = await _fileUploadService.UploadFileAsync(fileUploadModel, User);
+        var result = await _fileUploadService.UploadFileAsync(file, User);
         return Ok(result);
     }
 }

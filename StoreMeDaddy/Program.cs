@@ -1,5 +1,5 @@
 ﻿using CoinMachine;
-using StoreMeDaddy.Classes;
+using StoreMeDaddy.Objects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -8,7 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using StoreMeDaddy.Services;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.DataProtection;
+using StoreMeDaddy.Models;
+using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLogging();
@@ -20,6 +22,15 @@ builder.Services.AddSingleton<ITokenService>(provider =>
     ILogger<TokenService> logger = provider.GetRequiredService<ILogger<TokenService>>();
     return new TokenService(tokenSettings.SecretKey, tokenSettings.Issuer, tokenSettings.ExpiryMinutes, tokenSettings.Roles);
 });
+builder.Services.AddDbContext<StoreMeDaddyContext>(options =>
+{
+    options.UseSqlite("Data Source=storemedaddy.db");
+});
+
+// builder.Services.AddDataProtection()
+//     .PersistKeysToDbContext<StoreMeDaddyContext, DataProtectionKey>()
+//     .ProtectKeysWithDpapi();
+
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
 string secretKeyConfig = builder.Configuration["TokenSettings:SecretKey"] ?? throw new InvalidOperationException("Secret key must be defined in the configuration.");
 
@@ -50,6 +61,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 WebApplication app = builder.Build();
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.Run();

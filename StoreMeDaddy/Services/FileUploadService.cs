@@ -1,14 +1,15 @@
 namespace StoreMeDaddy.Services;
 
-using StoreMeDaddy.Classes;
+using StoreMeDaddy.Objects;
 using StoreMeDaddy.Models;
 using HashSlingingSlasher;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Http;
 
 public interface IFileUploadService
 {
-    Task<MetaDataModel> UploadFileAsync(FileUploadModel fileUploadModel, ClaimsPrincipal principal);
+    Task<MetaDataRecord> UploadFileAsync(IFormFile file, ClaimsPrincipal principal);
 }
 
 public class FileUploadService : IFileUploadService
@@ -24,10 +25,10 @@ public class FileUploadService : IFileUploadService
         _aes = Aes.Create();
     }
 
-    public async Task<MetaDataModel> UploadFileAsync(FileUploadModel fileUploadModel, ClaimsPrincipal principal)
+    public async Task<MetaDataRecord> UploadFileAsync(IFormFile file, ClaimsPrincipal principal)
     {
-        string userIdClaim = (principal.FindFirst(ClaimTypes.NameIdentifier)?.Value) ?? throw new Exception("User ID claim not found in principal.");
-        string hash = Hasher.HashFile(fileUploadModel.File);
+        string userIdFromClaim = (principal.FindFirst(ClaimTypes.NameIdentifier)?.Value) ?? throw new Exception("User ID claim not found in principal.");
+        string hash = Hasher.HashFile(file);
 
         // Generate a new unique salt for this file
         byte[] salt = new byte[16];
@@ -41,23 +42,33 @@ public class FileUploadService : IFileUploadService
         {
             _aes.Key = keyDerivation.GetBytes(32); // Get a 256-bit key
         }
-        MetaDataModel metadata = new(fileUploadModel.File.FileName, fileUploadModel.Description, _uploadPath, fileUploadModel.Size, fileUploadModel.Type, fileUploadModel.IsPublic, false, fileUploadModel.Version, userIdClaim, hash, salt, _aes.IV);
-        // Save the file to the disk with encryption
-        string filePath = Path.Combine(_uploadPath, metadata.FileName);
+
+        string filePath = Path.Combine(_uploadPath, file.FileName);
         using (FileStream fileStream = new(filePath, FileMode.Create))
         {
             using CryptoStream cryptoStream = new(fileStream, _aes.CreateEncryptor(), CryptoStreamMode.Write);
-            await fileUploadModel.File.CopyToAsync(cryptoStream);
+            await file.CopyToAsync(cryptoStream);
         }
 
-        // Save salt and IV to the metadata
-        metadata.Salt = salt;
-        metadata.IV = _aes.IV;
+        MetaDataRecord metadataRecord = new(file.FileName, _uploadPath, file.Length, file.ContentType, false, false, "0", userIdFromClaim, hash, salt, _aes.IV);
+        MetaDataModel metadataModel = new()
+        {
+            FileName = metadataRecord.FileName,
+            Path = metadataRecord.Path,
+            Size = metadataRecord.Size,
+            Type = metadataRecord.Type,
+            IsPublic = metadataRecord.IsPublic,
+            IsDeleted = metadataRecord.IsDeleted,
+            Version = metadataRecord.Version ?? "0",
+            UserId = metadataRecord.UserId,
+            Hash = metadataRecord.Hash,
+            Salt = metadataRecord.Salt,
+            IV = metadataRecord.IV
+        };
 
-        // Save the metadata to the database
-        _context.MetaData.Add(metadata);
+        _context.MetaData.Add(metadataModel);
         await _context.SaveChangesAsync();
 
-        return metadata;
+        return metadataRecord;
     }
 }
