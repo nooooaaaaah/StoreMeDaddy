@@ -1,0 +1,13 @@
+<!ELEMENT Project (PropertyGroup,ItemGroup)>
+<!ATTLIST Project Sdk NMTOKEN #REQUIRED>
+<!ELEMENT PropertyGroup (OutputType,TargetFramework,ImplicitUsings,Nullable)>
+<!ELEMENT OutputType (#PCDATA)>
+<!ELEMENT TargetFramework (#PCDATA)>
+<!ELEMENT ImplicitUsings (#PCDATA)>
+<!ELEMENT Nullable (#PCDATA)>
+<!ELEMENT ItemGroup (PackageReference+,Folder)>
+<!ELEMENT PackageReference (IncludeAssets?,PrivateAssets?)>
+<!ATTLIST PackageReference Include ID #REQUIRED>
+<!ATTLIST PackageReference Version (1.0.0|2.2.10|7.0.0|7.0.11) #REQUIRED><!ELEMENT IncludeAssets (#PCDATA)><!ELEMENT PrivateAssets (#PCDATA)>
+<!ELEMENT Folder EMPTY>
+<!ATTLIST Folder Include CDATA #REQUIRED>
