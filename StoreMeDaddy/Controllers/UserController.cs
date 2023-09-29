@@ -1,7 +1,8 @@
 namespace StoreMeDaddy.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using StoreMeDaddy.Services;
-using StoreMeDaddy.Models;
+// using StoreMeDaddy.Models;
+using StoreMeDaddy.Objects;
 using Microsoft.AspNetCore.Authorization;
 
 [Authorize]
@@ -17,29 +18,29 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<UserModel>> Get()
+    public async Task<ActionResult<UserRecord>> Get()
     {
-        UserModel user = await _userService.GetUserAsync(User);
+        UserRecord user = await _userService.GetUserAsync(User);
         return Ok(user);
     }
     [HttpPost]
-    public async Task<ActionResult<UserModel>> Create(UserModel user, string password)
+    public async Task<ActionResult<UserRecord>> Create(UserRecord user, string password)
     {
-        UserModel createdUser = await _userService.CreateUserAsync(user, password);
+        UserRecord createdUser = await _userService.CreateUserAsync(user, password);
         return Ok(createdUser);
     }
 
     [HttpPut]
-    public async Task<ActionResult<UserModel>> Update(UserModel user)
+    public async Task<ActionResult<UserRecord>> Update(ExistingUserRecord user)
     {
-        UserModel updatedUser = await _userService.UpdateUserAsync(user);
+        UserRecord updatedUser = await _userService.UpdateUserAsync(user);
         return Ok(updatedUser);
     }
 
     [HttpDelete]
-    public async Task<ActionResult<UserModel>> Delete()
+    public async Task<ActionResult<UserRecord>> Delete()
     {
-        UserModel user = await _userService.DeleteUserAsync(User);
+        UserRecord user = await _userService.DeleteUserAsync(User);
         return Ok(user);
     }
 }

@@ -2,16 +2,15 @@ namespace StoreMeDaddy.Objects;
 using System.Linq;
 using HashSlingingSlasher;
 
-public record UserRecord(string Username, string Role, byte[] Hash, byte[] Salt)
+public record UserRecord(string Username, string Role)
+{
+}
+
+public record NewUserRecord(string Username, string Role, byte[] Hash, byte[] Salt) : UserRecord(Username, Role)
 {
     private static readonly string SpecialChars = @"@%!#$%^&*()?/><,|}]{~`+=";
-
-    public UserRecord(string username, string password, string role) : this("", "", Array.Empty<byte>(), Array.Empty<byte>())
+    public NewUserRecord(string username, string role, string password) : this(username, role, Array.Empty<byte>(), Array.Empty<byte>())
     {
-        if (username == null)
-        {
-            throw new ArgumentNullException(nameof(username));
-        }
         if (password == null)
         {
             throw new ArgumentNullException(nameof(password));
@@ -24,11 +23,14 @@ public record UserRecord(string Username, string Role, byte[] Hash, byte[] Salt)
         {
             throw new ArgumentException("Password must be at least 3 characters long and must contain at least one special character.");
         }
-
         PasswordHasher.CreatePasswordHash(password, out byte[] hash, out byte[] salt);
         Username = username;
-        Salt = salt;
-        Hash = hash;
         Role = role;
+        Hash = hash;
+        Salt = salt;
     }
+}
+
+public record ExistingUserRecord(int Id, string Username, string Role, byte[] Hash, byte[] Salt) : NewUserRecord(Username, Role, Hash, Salt)
+{
 }

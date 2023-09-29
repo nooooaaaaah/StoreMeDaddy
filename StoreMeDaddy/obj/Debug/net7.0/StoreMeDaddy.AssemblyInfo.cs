@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StoreMeDaddy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+834ff678054b0115e7c5050549b32021da0b6246")]
 [assembly: System.Reflection.AssemblyProductAttribute("StoreMeDaddy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StoreMeDaddy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
