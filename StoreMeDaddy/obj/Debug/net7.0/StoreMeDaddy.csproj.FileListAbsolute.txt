@@ -79,6 +79,7 @@
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.AssemblyInfoInputs.cache
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.AssemblyInfo.cs
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.csproj.CoreCompileInputs.cache
+/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.sourcelink.json
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.csproj.CopyComplete
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/StoreMeDaddy.dll
 /Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/obj/Debug/net7.0/refint/StoreMeDaddy.dll

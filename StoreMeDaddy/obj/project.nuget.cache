@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RtvMtzWRewT0xn5cvGJ1US/u3hTa84O27DYtvxslsMFH5MRDBFRwo7zUD1IQsxvowLk3GGFMOpEzPBEV/TYXaA==",
+  "dgSpecHash": "osMI/KQ+DTK4RCT5ERTyl5g/xQi3tD/vAlXZZ9C+1lSJVFtuoh0xg6Xrwb2V50rIALGe0IiuH+rvOIiMHymxSQ==",
   "success": true,
   "projectFilePath": "/Users/noahspielman/Projects/tools/FileServer/StoreMeDaddy/StoreMeDaddy.csproj",
   "expectedPackageFiles": [
@@ -145,7 +145,10 @@
     "/Users/noahspielman/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/noahspielman/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
-    "/Users/noahspielman/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512"
+    "/Users/noahspielman/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/microsoft.netcore.app.ref/7.0.11/microsoft.netcore.app.ref.7.0.11.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.11/microsoft.aspnetcore.app.ref.7.0.11.nupkg.sha512",
+    "/Users/noahspielman/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.11/microsoft.netcore.app.host.osx-arm64.7.0.11.nupkg.sha512"
   ],
   "logs": [
     {
