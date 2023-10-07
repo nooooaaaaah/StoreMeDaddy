@@ -1,0 +1,12 @@
+# Node.js dependencies
+node_modules/
+
+# Tailwind CSS build output
+wwwroot/css/output.css
+
+# .NET 
+bin/
+obj/
+TestResults/
+
+.vscode/
