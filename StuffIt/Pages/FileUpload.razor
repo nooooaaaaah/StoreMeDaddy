@@ -1,0 +1,29 @@
+@page "/file-upload"
+
+<h3>File Upload</h3>
+
+<!-- File Input for Uploading -->
+<input type="file" id="fileInput" multiple style="display: none;" @ref="fileInputRef" />
+<button class="btn btn-primary">Select Files</button>
+
+<!-- Drag-and-Drop Area -->
+<div id="dragDropArea" @ondragover.prevent @ondrop.prevent="OnDrop">
+    <p class=" text-cyan-500">Drag & Drop Files Here</p>
+</div>
+
+<!-- Display Uploaded Files -->
+@if (uploadedFiles.Any())
+{
+    <h4>Uploaded Files:</h4>
+    <ul>
+    @foreach (var file in uploadedFiles)
+        {
+            <li>@file</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<string> uploadedFiles = new List<string>();
+    private ElementReference fileInputRef;
+}
