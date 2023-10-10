@@ -1,39 +1,53 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">StuffIt</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿@using Blazor.Heroicons.Solid
+<div class="flex flex-col top-0 w-full bg-indigo-100 p-2">
+
+    <div id="appname" class="items-center justify-center text-center">
+        <img src="favicon.png" alt="Logo" class="h-10 w-10 left-0 opacity-60" />
+        <span class="text-center text-[15px]">Stuff It</span>
+        <span class="text-[5px]">For StoreMeDaddy</span>
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="file-upload">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Files
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="settings">
-                <span class="oi oi-cog" aria-hidden="true"></span> Settings
-            </NavLink>
-        </div>
-    </nav>
-</div>
+<nav class="justify-items-center text-center items-center mt-3">
+    <div class="p-3">
+        <NavLink class="" href="" Match="NavLinkMatch.All" @onmouseenter="HomeToolTip" @onmouseleave="HomeToolTip">
+            <HomeModernIcon class="w-8 text-lg align-text-top text-indigo-100" aria-hidden="true" />
+            <span aria-label="Home" class="lg:hidden md:hidden text-indigo-100">Home</span>
+            <ToolTip ShowToolTip="showHomeToolTip">Home</ToolTip>
+        </NavLink>
+    </div>
+    <div class="p-3">
+        <NavLink class="" href="files" @onmouseenter="FileToolTip" @onmouseleave="FileToolTip">
+            <ListBulletIcon class="w-8 text-lg align-text-top text-indigo-100" aria-hidden="true" />
+            <div class="lg:hidden md:hidden text-indigo-100">Files</div>
+            <ToolTip ShowToolTip="showFileToolTip">File Upload</ToolTip>
+        </NavLink>
+    </div>
+    <div class="p-3">
+        <NavLink class="" href="settings" @onmouseenter="SettingsToolTip" @onmouseleave="SettingsToolTip">
+            <CogIcon class="w-8 text-lg align-text-top text-indigo-100" aria-hidden="true" />
+            <div class="lg:hidden md:hidden text-indigo-100">Settings</div>
+            <ToolTip ShowToolTip="showSettingsToolTip">Settings</ToolTip>
+        </NavLink>
+    </div>
+</nav>
+
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    private bool showLabels { get; set; }
+    private bool showFileToolTip { get; set; }
+    private bool showSettingsToolTip { get; set; }
+    private bool showHomeToolTip { get; set; }
+    private void FileToolTip(MouseEventArgs e)
     {
-        collapseNavMenu = !collapseNavMenu;
+        showFileToolTip = showFileToolTip ? false : true;
+    }
+    private void SettingsToolTip(MouseEventArgs e)
+    {
+        showSettingsToolTip = showSettingsToolTip ? false : true;
+    }
+    private void HomeToolTip(MouseEventArgs e)
+    {
+        showHomeToolTip = showHomeToolTip ? false : true;
     }
 }
