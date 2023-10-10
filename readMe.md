@@ -47,7 +47,9 @@ Before running the application, ensure that the `appsettings.json` file is prope
 
 jsonCopy code
 
-`{   "TokenSettings": {       "SecretKey": "YOUR_SECRET_KEY",       "Issuer": "YOUR_ISSUER",       "ExpiryMinutes": "TOKEN_EXPIRY_DURATION",       "Roles": "ALLOWED_ROLES"   } }`
+```json
+{   "TokenSettings": {       "SecretKey": "YOUR_SECRET_KEY",       "Issuer": "YOUR_ISSUER",       "ExpiryMinutes": "TOKEN_EXPIRY_DURATION",       "Roles": "ALLOWED_ROLES"   } }
+```
 
 Replace placeholders (`YOUR_SECRET_KEY`, `YOUR_ISSUER`, etc.) with appropriate values.
 
