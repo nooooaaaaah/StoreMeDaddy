@@ -1,18 +1,35 @@
 ﻿@page "/settings"
+@using System.ComponentModel.DataAnnotations
 
 <PageTitle>Settings</PageTitle>
 
-<h1>Settings</h1>
+<h1 class="text-3xl">Settings</h1>
 
-<p role="status">Current count: @currentCount</p>
+<EditForm Model="@settings" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+    <div class="text-2xl">Max File size</div>
+    <div class="">
+        <label for="max-items" class="">Max Items:</label>
+        <InputNumber id="max-items" class="bg-indigo-900 w-20 rounded-md" @bind-Value="settings.MaxItems" />
+        <ValidationMessage For="@(() => settings.MaxItems)" class="text-red-500" />
+    </div>
+    <!-- Add other form fields here -->
+    <ValidationSummary />
+    <div>Max Storage</div>
+
+    <h2 class="text-2xl">Notifications</h2>
+
+    <button type="submit">Submit</button>
+</EditForm>
 
 @code {
-    private int currentCount = 0;
+    private SettingsViewModel settings = new SettingsViewModel();
 
-    private void IncrementCount()
+    private void HandleValidSubmit()
     {
-        currentCount++;
+        // Handle form submission
     }
+}
+
 }
