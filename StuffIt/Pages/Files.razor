@@ -7,25 +7,17 @@
 
 <PageTitle>Files</PageTitle>
 <h1 class="text-3xl">View Edit Upload</h1>
-<p>
-    <label>
-        Max file size:
-        <input type="number" @bind="maxFileSize" />
-    </label>
-</p>
 
-<p>
-    <label>
-        Max allowed files:
-        <input type="number" @bind="maxAllowedFiles" />
-    </label>
-</p>
 
-<p>
+<p class="p-5">
+    <InputFile OnChange="@LoadFiles" class="hidden" id="file-upload" />
     <label>
-        Upload up to @maxAllowedFiles of up to @maxFileSize bytes:
-        <InputFile OnChange="@LoadFiles" multiple />
+        Stuff me full of files
     </label>
+    <label for="file-upload" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Choose a File
+    </label>
+
 </p>
 
 @if (isLoading)
@@ -34,7 +26,7 @@
 }
 else
 {
-    <ul>
+    <ul class="bg-blue-950">
     @foreach (var file in loadedFiles)
         {
             <li>
@@ -51,8 +43,6 @@ else
 
 @code {
     private List<IBrowserFile> loadedFiles = new();
-    private long maxFileSize = 1024 * 15;
-    private int maxAllowedFiles = 3;
     private bool isLoading;
 
     private async Task LoadFiles(InputFileChangeEventArgs e)
@@ -60,27 +50,35 @@ else
         isLoading = true;
         loadedFiles.Clear();
 
-        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        foreach (var file in e.GetMultipleFiles())
         {
             try
             {
                 loadedFiles.Add(file);
-
-                var trustedFileNameForFileStorage = Path.GetRandomFileName();
+                var trustedFileNameForFileStorage = file.Name;
                 var path = Path.Combine(Environment.ContentRootPath,
                 Environment.EnvironmentName, "unsafe_uploads",
                 trustedFileNameForFileStorage);
-
+                @* Console.WriteLine($"Path: {path}"); *@
                 await using FileStream fs = new(path, FileMode.Create);
-                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+                await file.OpenReadStream().CopyToAsync(fs);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("File: {Filename} Error: {Error}",
-                file.Name, ex.Message);
+                Console.WriteLine($"File: {file.Name} Error: {ex.Message}");
             }
+            // print file metadata
+            @* Console.WriteLine($"File: {file.Name} Size: {file.Size}"); *@
+
         }
 
         isLoading = false;
+    }
+    private async Task<string> GetImageSourceAsync(IBrowserFile file)
+    {
+        var buffer = new byte[file.Size];
+        await file.OpenReadStream().ReadAsync(buffer);
+
+        return $"data:{file.ContentType};base64,{Convert.ToBase64String(buffer)}";
     }
 }
