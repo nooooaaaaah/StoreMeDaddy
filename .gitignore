@@ -10,3 +10,7 @@ obj/
 TestResults/
 
 .vscode/
+
+# Test Download Loacation 
+
+Stuffit/Development
