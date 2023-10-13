@@ -1,35 +1,51 @@
-﻿@page "/settings"
-@using System.ComponentModel.DataAnnotations
-
-<PageTitle>Settings</PageTitle>
+﻿@using System.ComponentModel.DataAnnotations
+@page "/settings"
 
 <h1 class="text-3xl">Settings</h1>
+<div class="flex justify-center">
+    <EditForm Model="@settings" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <div class="text-2xl">File Settings</div>
+            <label for="max-items">Num of Items:</label>
+            <InputNumber id="max-items" class="bg-indigo-900 w-20 rounded-md" @bind-Value="@settings.NumofItems" min=0/>
+            @if (settings.UnlimitedItems)
+            {
+                <span class="text-green-600 ml-1 ">(Unlimited)</span>
+            }
+        <div @onmouseenter="ItemToolTip" @onmouseleave="ItemToolTip">
+            <Blazor.Heroicons.Mini.InformationCircleIcon class="w-5 h-5" />
+            <ToolTip ShowToolTip="showItemsToolTip">The maximum number of items that can be stored in the file system. 0 is Unlimited</ToolTip>
+        </div>
+        <div>Total Storage</div>
+        <h2 class="text-2xl">Notifications</h2>
 
-<EditForm Model="@settings" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-
-    <div class="text-2xl">Max File size</div>
-    <div class="">
-        <label for="max-items" class="">Max Items:</label>
-        <InputNumber id="max-items" class="bg-indigo-900 w-20 rounded-md" @bind-Value="settings.MaxItems" />
-        <ValidationMessage For="@(() => settings.MaxItems)" class="text-red-500" />
-    </div>
-    <!-- Add other form fields here -->
-    <ValidationSummary />
-    <div>Max Storage</div>
-
-    <h2 class="text-2xl">Notifications</h2>
-
-    <button type="submit">Submit</button>
-</EditForm>
-
+        <button class="rounded-md bg-indigo-900 p-2" type="submit">Submit</button>
+    </EditForm>
+</div>
 @code {
-    private SettingsViewModel settings = new SettingsViewModel();
+    private SettingsModel settings = new SettingsModel();
+    private bool showItemsToolTip = false;
 
     private void HandleValidSubmit()
     {
         // Handle form submission
     }
-}
+    private class SettingsModel
+    {
+        public int NumofItems { get; set; }
+
+        public bool UnlimitedItems
+        {
+            get
+            {
+                return NumofItems == 0;
+            }
+        }
+        // Add other properties here
+    }
+    private void ItemToolTip(MouseEventArgs e)
+    {
+        showItemsToolTip = showItemsToolTip ? false : true;
+    }
 
 }
