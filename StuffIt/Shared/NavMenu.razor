@@ -1,50 +1,48 @@
 ﻿@using Blazor.Heroicons.Solid
-<div class="flex flex-col top-0 w-full bg-indigo-100 p-2 text-center">
-    <div class="items-center justify-center text-center">
-        <img src="favicon.png" alt="Logo" class="h-10 w-10 left-0 opacity-60 mx-auto" />
-        <div class="text-center text-[12px] sm:text-[15px]">Stuff It</div>
+@if (collapseNavMenu)
+{
+    <div class="w-52 h-auto bg-indigo-950 bg-opacity-60">
+    <div class="flex p-3 text-justify items-center">
+        <img src="favicon.png" alt="Logo" class="h-10 w-10" />
+        <span class="text-3xl ml-4 text-indigo-100">Stuff It</span>
     </div>
+
+    <nav class="mt-12">
+        <NavLink class="flex p-3 hover:bg-indigo-900" href="" Match="NavLinkMatch.All" ActiveClass="bg-indigo-900">
+            <HomeModernIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+            <span aria-label="Home" class="ml-3 text-indigo-100">Home</span>
+        </NavLink>
+
+        <NavLink class="flex p-3 hover:bg-indigo-900" href="files" ActiveClass="bg-indigo-900">
+            <ListBulletIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+            <span class="ml-3 text-indigo-100">Files</span>
+        </NavLink>
+
+        <NavLink class="flex p-3 hover:bg-indigo-900" href="settings" ActiveClass="bg-indigo-900">
+            <CogIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+            <span class="ml-3 text-indigo-100">Settings</span>
+        </NavLink>
+
+    </nav>
 </div>
+}
 
-<nav class="mt-3 text-center justify-center">
-    <div class="mt-3">
-        <NavLink class="" href="" Match="NavLinkMatch.All" @onmouseenter="HomeToolTip" @onmouseleave="HomeToolTip">
-            <HomeModernIcon class="w-10 text-lg align-text-top text-indigo-100 mx-auto" aria-hidden="true" />
-            <div aria-label="Home" class="lg:hidden md:hidden text-indigo-100">Home</div>
-            <ToolTip ShowToolTip="showHomeToolTip">Home</ToolTip>
-        </NavLink>
-    </div>
-    <div class="mt-3">
-        <NavLink class="" href="files" @onmouseenter="FileToolTip" @onmouseleave="FileToolTip">
-            <ListBulletIcon class="w-10 text-lg align-text-top text-indigo-100 mx-auto" aria-hidden="true" />
-            <div class="lg:hidden md:hidden text-indigo-100">Files</div>
-            <ToolTip ShowToolTip="showFileToolTip">File Upload</ToolTip>
-        </NavLink>
-    </div>
-    <div class="mt-3">
-        <NavLink class="" href="settings" @onmouseenter="SettingsToolTip" @onmouseleave="SettingsToolTip">
-            <CogIcon class="w-10 text-lg align-text-top text-indigo-100 mx-auto" aria-hidden="true" />
-            <div class="lg:hidden md:hidden text-indigo-100">Settings</div>
-            <ToolTip ShowToolTip="showSettingsToolTip">Settings</ToolTip>
-        </NavLink>
-    </div>
-</nav>
-
+<button class="p-3 h-auto bg-opacity-60 bg-indigo-950 hover:bg-indigo-900 hover:bg-opacity-60" @onclick="ToggleNavMenu">
+    @if (collapseNavMenu)
+    {
+        <ChevronLeftIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+    }
+    else
+    {
+        <ChevronRightIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+    }
+</button>
 
 @code {
-    private bool showFileToolTip { get; set; }
-    private bool showSettingsToolTip { get; set; }
-    private bool showHomeToolTip { get; set; }
-    private void FileToolTip(MouseEventArgs e)
+    private bool collapseNavMenu = true;
+    private void ToggleNavMenu(EventArgs e)
     {
-        showFileToolTip = showFileToolTip ? false : true;
-    }
-    private void SettingsToolTip(MouseEventArgs e)
-    {
-        showSettingsToolTip = showSettingsToolTip ? false : true;
-    }
-    private void HomeToolTip(MouseEventArgs e)
-    {
-        showHomeToolTip = showHomeToolTip ? false : true;
+        Console.WriteLine("Toggling Nav Menu");
+        collapseNavMenu = !collapseNavMenu;
     }
 }

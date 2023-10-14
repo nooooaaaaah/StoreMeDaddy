@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./Pages/**/*.razor", "./Shared/**/*.razor"],
+  content: ["./**/*.razor"],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-gradients'),
+  ],
 }
 

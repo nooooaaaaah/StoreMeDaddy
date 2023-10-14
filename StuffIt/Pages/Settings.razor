@@ -1,25 +1,43 @@
 ﻿@using System.ComponentModel.DataAnnotations
 @page "/settings"
+<div class="flex">
+    <div class=" w-64 min-h-screen h-full bg-gradient-to-b from-fuchsia-950 to-violet-950 to-5% bg-opacity-40 rounded-lg shadow-2xl">
+        <h1 class="text-2xl p-3">Settings</h1>
+        <div class="mt-9 flex flex-col">
+            <button class="p-3 hover:bg-indigo-900 text-start">Profile</button>
+            <button class="p-3 hover:bg-indigo-900 text-start">File</button>
+        </div>
+    </div>
 
-<h1 class="text-3xl">Settings</h1>
-<div class="mt-9 text-lg leading-relaxed justify-evenly bg-slate-900 rounded-lg inline-block p-8">
-    <EditForm Model="@settings" OnValidSubmit="@HandleValidSubmit">
+    <EditForm class="mt-9 text-lg leading-relaxed justify-evenly bg-slate-900 rounded-lg inline-block w-[450px] h-52"
+        Model="@settings" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
-        <div class="text-2xl">File Settings</div>
-            <label for="max-items">Num of Items:</label>
-            <InputNumber id="max-items" class="bg-indigo-900 w-20 rounded-md" @bind-Value="@settings.NumofItems" min=0/>
+        <div class="text-2xl text-center p-3">File Settings</div>
+        <div class="flex items-center p-2">
+            <label class="mr-2" for="max-items">Num of Items: </label>
+            <InputNumber TValue="int" @bind-Value="@settings.NumofItems" min=0 id="max-items"
+                class="bg-indigo-900 w-20 rounded-md appearance-none">
+            </InputNumber>
+            <div class="ml-2" @onmouseenter="ItemToolTip" @onmouseleave="ItemToolTip">
+                <Blazor.Heroicons.Mini.InformationCircleIcon class="w-5 h-5" />
+                <ToolTip ShowToolTip="showItemsToolTip">The maximum number of items that can be stored in the file
+                    system. 0
+                    is Unlimited</ToolTip>
+            </div>
             @if (settings.UnlimitedItems)
             {
-                <span class="text-green-600 ml-1 ">(Unlimited)</span>
+                <span class="text-green-600 ml-3 ">(Unlimited)</span>
             }
-        <div @onmouseenter="ItemToolTip" @onmouseleave="ItemToolTip">
-            <Blazor.Heroicons.Mini.InformationCircleIcon class="w-5 h-5" />
-            <ToolTip ShowToolTip="showItemsToolTip">The maximum number of items that can be stored in the file system. 0 is Unlimited</ToolTip>
         </div>
-        <div>Total Storage</div>
-        <h2 class="text-2xl">Notifications</h2>
-        <button class="rounded-md bg-indigo-900 p-2" type="submit">Submit</button>
+        <div class="flex items-center p-2">
+            <div>Total Storage</div>
+        </div>
     </EditForm>
+    <EditForm class="mt-9 text-lg leading-relaxed justify-evenly bg-slate-900 rounded-lg inline-block p-8"
+        Model="@settings" OnValidSubmit="@HandleValidSubmit">
+        <h2 class="text-2xl">Notifications</h2>
+    </EditForm>
+    <button class="rounded-md bg-indigo-900 p-2" type="submit">Submit</button>
 </div>
 @code {
     private SettingsModel settings = new SettingsModel();
