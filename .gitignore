@@ -2,7 +2,7 @@
 node_modules/
 
 # Tailwind CSS build output
-wwwroot/css/output.css
+output.css
 
 # .NET 
 bin/
