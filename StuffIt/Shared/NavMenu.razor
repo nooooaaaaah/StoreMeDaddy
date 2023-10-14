@@ -1,7 +1,7 @@
 ﻿@using Blazor.Heroicons.Solid
 @if (collapseNavMenu)
 {
-    <div class="w-52 h-auto bg-indigo-950 bg-opacity-60">
+    <div class="w-52 h-auto bg-indigo-950 bg-opacity-50">
     <div class="flex p-3 text-justify items-center">
         <img src="favicon.png" alt="Logo" class="h-10 w-10" />
         <span class="text-3xl ml-4 text-indigo-100">Stuff It</span>
@@ -27,7 +27,7 @@
 </div>
 }
 
-<button class="p-3 h-auto bg-opacity-60 bg-indigo-950 hover:bg-indigo-900 hover:bg-opacity-60" @onclick="ToggleNavMenu">
+<button class="p-3 h-auto bg-opacity-0 bg-indigo-950 hover:bg-indigo-950 hover:bg-opacity-50" @onclick="ToggleNavMenu">
     @if (collapseNavMenu)
     {
         <ChevronLeftIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />

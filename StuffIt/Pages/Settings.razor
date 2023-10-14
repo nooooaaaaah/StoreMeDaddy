@@ -1,68 +1,97 @@
 ﻿@using System.ComponentModel.DataAnnotations
 @page "/settings"
+
+<h1 class="text-3xl p-3 text-center">Settings</h1>
+
 <div class="flex">
-    <div class=" w-64 min-h-screen h-full bg-gradient-to-b from-fuchsia-950 to-violet-950 to-5% bg-opacity-40 rounded-lg shadow-2xl">
-        <h1 class="text-2xl p-3">Settings</h1>
+    <div
+        class="mt-20 w-64 h-[46rem] bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-violet-950 from-50% to-pink-900 rounded-lg shadow-2xl">
+        <h2 class="text-2xl p-3">Options</h2>
         <div class="mt-9 flex flex-col">
-            <button class="p-3 hover:bg-indigo-900 text-start">Profile</button>
-            <button class="p-3 hover:bg-indigo-900 text-start">File</button>
+            <button class="p-3 hover:bg-gradient-to-r from-violet-950 text-start" @onclick="ShowProfileSettings">Profile</button>
+            <button class="p-3 hover:bg-gradient-to-r from-violet-950 text-start"
+                @onclick="ShowFileSettings">File</button>
+            <button class="p-3 hover:bg-gradient-to-r from-violet-950 text-start" @onclick="ShowServerSettings">Server</button>
+            <button class="p-3 hover:bg-gradient-to-r from-violet-950 text-start"
+                @onclick="ShowNotificationsSettings">Notifications</button>
+            <button class="p-3 hover:bg-gradient-to-r from-violet-950 text-start" @onclick="ShowSecuritySettings">Security</button>
         </div>
     </div>
-
-    <EditForm class="mt-9 text-lg leading-relaxed justify-evenly bg-slate-900 rounded-lg inline-block w-[450px] h-52"
-        Model="@settings" OnValidSubmit="@HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <div class="text-2xl text-center p-3">File Settings</div>
-        <div class="flex items-center p-2">
-            <label class="mr-2" for="max-items">Num of Items: </label>
-            <InputNumber TValue="int" @bind-Value="@settings.NumofItems" min=0 id="max-items"
-                class="bg-indigo-900 w-20 rounded-md appearance-none">
-            </InputNumber>
-            <div class="ml-2" @onmouseenter="ItemToolTip" @onmouseleave="ItemToolTip">
-                <Blazor.Heroicons.Mini.InformationCircleIcon class="w-5 h-5" />
-                <ToolTip ShowToolTip="showItemsToolTip">The maximum number of items that can be stored in the file
-                    system. 0
-                    is Unlimited</ToolTip>
-            </div>
-            @if (settings.UnlimitedItems)
+    <div class="w-full">
+        <div class=" mx-auto">
+            @if (showProfileSettings)
             {
-                <span class="text-green-600 ml-3 ">(Unlimited)</span>
+                <div>Profile Settings Component</div>
+            }
+            else if (showFileSettings)
+            {
+                <StuffIt.Shared.Settings.FileSettings />
+            }
+            else if (showServerSettings)
+            {
+                <div>Server Settings Component</div>
+            }
+            else if (showNotificationsSettings)
+            {
+                <div>Notifications Settings Component</div>
+            }
+            else if (showSecuritySettings)
+            {
+                <div>Security Settings Component</div>
             }
         </div>
-        <div class="flex items-center p-2">
-            <div>Total Storage</div>
-        </div>
-    </EditForm>
-    <EditForm class="mt-9 text-lg leading-relaxed justify-evenly bg-slate-900 rounded-lg inline-block p-8"
-        Model="@settings" OnValidSubmit="@HandleValidSubmit">
-        <h2 class="text-2xl">Notifications</h2>
-    </EditForm>
-    <button class="rounded-md bg-indigo-900 p-2" type="submit">Submit</button>
+    </div>
 </div>
+
 @code {
-    private SettingsModel settings = new SettingsModel();
-    private bool showItemsToolTip = false;
+    private bool showProfileSettings;
+    private bool showFileSettings;
+    private bool showServerSettings;
+    private bool showNotificationsSettings;
+    private bool showSecuritySettings;
 
-    private void HandleValidSubmit()
+    private void ShowProfileSettings()
     {
-        // Handle form submission
-    }
-    private class SettingsModel
-    {
-        public int NumofItems { get; set; }
-
-        public bool UnlimitedItems
-        {
-            get
-            {
-                return NumofItems == 0;
-            }
-        }
-        // Add other properties here
-    }
-    private void ItemToolTip(MouseEventArgs e)
-    {
-        showItemsToolTip = showItemsToolTip ? false : true;
+        showProfileSettings = true;
+        showFileSettings = false;
+        showServerSettings = false;
+        showNotificationsSettings = false;
+        showSecuritySettings = false;
     }
 
+    private void ShowFileSettings()
+    {
+        showProfileSettings = false;
+        showFileSettings = true;
+        showServerSettings = false;
+        showNotificationsSettings = false;
+        showSecuritySettings = false;
+    }
+
+    private void ShowServerSettings()
+    {
+        showProfileSettings = false;
+        showFileSettings = false;
+        showServerSettings = true;
+        showNotificationsSettings = false;
+        showSecuritySettings = false;
+    }
+
+    private void ShowNotificationsSettings()
+    {
+        showProfileSettings = false;
+        showFileSettings = false;
+        showServerSettings = false;
+        showNotificationsSettings = true;
+        showSecuritySettings = false;
+    }
+
+    private void ShowSecuritySettings()
+    {
+        showProfileSettings = false;
+        showFileSettings = false;
+        showServerSettings = false;
+        showNotificationsSettings = false;
+        showSecuritySettings = true;
+    }
 }
