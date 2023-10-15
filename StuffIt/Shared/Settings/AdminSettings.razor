@@ -1,0 +1,7 @@
+﻿<div @attributes="AdditionalAttributes">
+<h3>AdminSettings</h3>
+</div>
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+}

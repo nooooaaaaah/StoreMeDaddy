@@ -1,0 +1,154 @@
+﻿@page "/manageUsers"
+
+<h1 class="text-3xl p-3 text-center">User Management</h1>
+
+<div class="flex justify-center">
+    @if (users == null)
+    {
+        <Loading isLoading="true" />
+    }
+    else
+    {
+        <table class="table-auto">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Username</th>
+                    <th class="px-4 py-2">Email</th>
+                    <th class="px-4 py-2">Role</th>
+                    <th class="px-4 py-2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in users)
+                {
+                    <tr class="hover:bg-gray-100">
+                        <td class="border px-4 py-2">@user.Username</td>
+                        <td class="border px-4 py-2">@user.Email</td>
+                        <td class="border px-4 py-2">@user.Role</td>
+                        <td class="border px-4 py-2"><button
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                @onclick="() => EditUser(user)">Edit</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@if (showEditUser)
+{
+    <div class="flex justify-center mt-5">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-2xl mb-5">Edit User</h2>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="username">
+                Username:
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="username" type="text" @bind-value="editUser.Username" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="email">
+                Email:
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email" type="email" @bind-value="editUser.Email" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="role">
+                Role:
+            </label>
+            <select
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="role" @bind="editUser.Role">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+        </div>
+        <div class="flex items-center justify-between">
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                @onclick="SaveUser">
+                Save
+            </button>
+            <button
+                class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                @onclick="CancelEditUser">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+@code
+{
+    private List<User> users;
+    private User editUser;
+    private bool showEditUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Load users from server
+        users = await UserService.GetUsersAsync();
+    }
+
+    private void EditUser(User user)
+    {
+        editUser = new User
+            {
+                Username = user.Username,
+                Email = user.Email,
+                Role = user.Role
+            };
+        showEditUser = true;
+    }
+
+    private async Task SaveUser()
+    {
+        // Save user changes to server
+        await UserService.SaveUserAsync(editUser);
+
+        // Update user list
+        users = await UserService.GetUsersAsync();
+
+        // Hide edit user form
+        showEditUser = false;
+    }
+
+    private void CancelEditUser()
+    {
+        // Hide edit user form
+        showEditUser = false;
+    }
+
+    public class User
+    {
+        public string? Username { get; set; }
+        public string? Email { get; set; }
+        public string? Role { get; set; }
+    }
+
+    public static class UserService
+    {
+        public static async Task<List<User>> GetUsersAsync()
+        {
+            // TODO Implement server-side user retrieval
+            await Task.Delay(2000);
+            return new List<User>
+{
+new User { Username = "admin", Email = "admin@example.com", Role = "Admin" },
+new User { Username = "user1", Email = "user1@example.com", Role = "User" },
+new User { Username = "user2", Email = "user2@example.com", Role = "User" }
+};
+        }
+
+        public static async Task SaveUserAsync(User user)
+        {
+            // TODO Implement server-side user saving
+            await Task.Delay(2000);
+        }
+    }
+}
