@@ -1,0 +1,9 @@
+<div @attributes="AdditionalAttributes">
+    <h2>Server Settings</h2>
+</div>
+
+@code
+{
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AdditionalAttributes { get; set; }
+}

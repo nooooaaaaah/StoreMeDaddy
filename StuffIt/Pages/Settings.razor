@@ -1,4 +1,6 @@
 ﻿@using System.ComponentModel.DataAnnotations
+@using Blazor.Heroicons.Mini
+@using StuffIt.Shared.Settings
 @page "/settings"
 
 <h1 class="text-3xl p-3 text-center">Settings</h1>
@@ -6,99 +8,64 @@
 <div class="flex">
     <div
         class="w-64 h-[46rem] bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-violet-950 from-50% to-fuchsia-950 rounded-lg shadow-2xl">
-        <h2 class="text-2xl p-3">Options</h2>
+        <div class="flex p-2 justify-center mt-3">
+            <Cog6ToothIcon class="w-8 h-8" />
+            <h2 class="text-2xl">Options</h2>
+        </div>
         <div class="mt-9 flex flex-col">
-            <button class="p-3 hover:bg-gradient-to-r from-fuchsia-950 text-start  @((showProfileSettings) ? "bg-indigo-900 text-white" : "")"
-                @onclick="ShowProfileSettings">Profile</button>
-            <button
-                class="p-3 hover:bg-gradient-to-r from-fuchsia-950 text-start @((showFileSettings) ? "bg-indigo-900 text-white" : "")"
-                @onclick="ShowFileSettings">File</button>
-            <button
-                class="p-3 hover:bg-gradient-to-r from-fuchsia-950 text-start @((showServerSettings) ? "bg-indigo-900 text-white" : "")"
-                @onclick="ShowServerSettings">Server</button>
-            <button
-                class="p-3 hover:bg-gradient-to-r from-fuchsia-950 text-start @((showNotificationsSettings) ? "bg-indigo-900 text-white" : "")"
-                @onclick="ShowNotificationsSettings">Notifications</button>
-            <button
-                class="p-3 hover:bg-gradient-to-r from-fuchsia-950 text-start @((showSecuritySettings) ? "bg-indigo-900 text-white" : "")"
-                @onclick="ShowSecuritySettings">Security</button>
-        </div>
-    </div>
-    <div class="w-full">
-        <div class=" mx-auto">
-            @if (showProfileSettings)
+            @foreach (SettingsOption option in Enum.GetValues(typeof(SettingsOption)))
             {
-                <div>Profile Settings Component</div>
-            }
-            else if (showFileSettings)
-            {
-                <StuffIt.Shared.Settings.FileSettings />
-            }
-            else if (showServerSettings)
-            {
-                <div>Server Settings Component</div>
-            }
-            else if (showNotificationsSettings)
-            {
-                <div>Notifications Settings Component</div>
-            }
-            else if (showSecuritySettings)
-            {
-                <div>Security Settings Component</div>
+                <button
+                    class="p-3 hover:bg-gradient-to-r from-fuchsia-950 text-start transition-colors duration-500  @((activeOption == option) ? "bg-indigo-900 text-white" : "")"
+                    @onclick="() => SetActiveOption(option)">
+                    @option
+                </button>
             }
         </div>
     </div>
+    <div class="flex justify-center items-center w-full">
+        @switch (activeOption)
+        {
+            case SettingsOption.Profile:
+                <ProfileSettings class="w-full max-w-xl" />
+                break;
+            case SettingsOption.File:
+                <FileSettings class="w-full max-w-xl" />
+                break;
+            case SettingsOption.Server:
+                <ServerSettings class="w-full max-w-xl" />
+                break;
+            case SettingsOption.Notifications:
+                <NotificationSettings class="w-full max-w-xl" />
+                break;
+            case SettingsOption.Security:
+                <SecuritySettings class="w-full max-w-xl" />
+                break;
+            case SettingsOption.Admin:
+                <AdminSettings class="w-full max-w-xl" />
+                break;
+            default:
+                <ProfileSettings class="w-full max-w-xl" />
+                break;
+        }
+    </div>
+
 </div>
 
 @code {
-    private bool showProfileSettings;
-    private bool showFileSettings;
-    private bool showServerSettings;
-    private bool showNotificationsSettings;
-    private bool showSecuritySettings;
+    private SettingsOption activeOption;
 
-    private void ShowProfileSettings()
+    private void SetActiveOption(SettingsOption option)
     {
-        showProfileSettings = true;
-        showFileSettings = false;
-        showServerSettings = false;
-        showNotificationsSettings = false;
-        showSecuritySettings = false;
+        activeOption = option;
     }
-
-    private void ShowFileSettings()
+    public enum SettingsOption
     {
-        showProfileSettings = false;
-        showFileSettings = true;
-        showServerSettings = false;
-        showNotificationsSettings = false;
-        showSecuritySettings = false;
-    }
-
-    private void ShowServerSettings()
-    {
-        showProfileSettings = false;
-        showFileSettings = false;
-        showServerSettings = true;
-        showNotificationsSettings = false;
-        showSecuritySettings = false;
-    }
-
-    private void ShowNotificationsSettings()
-    {
-        showProfileSettings = false;
-        showFileSettings = false;
-        showServerSettings = false;
-        showNotificationsSettings = true;
-        showSecuritySettings = false;
-    }
-
-    private void ShowSecuritySettings()
-    {
-        showProfileSettings = false;
-        showFileSettings = false;
-        showServerSettings = false;
-        showNotificationsSettings = false;
-        showSecuritySettings = true;
+        Profile,
+        File,
+        Server,
+        Notifications,
+        Security,
+        Admin
     }
 }

@@ -1,31 +1,36 @@
-<EditForm class="mt-9 text-lg leading-relaxed justify-evenly bg-slate-900 rounded-lg inline-block w-[450px] h-52"
-    Model="@fileSettings" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <div class="text-2xl text-center p-3">File Settings</div>
-    <div class="flex items-center p-2">
-        <label class="mr-2" for="max-items">Num of Items: </label>
-        <InputNumber TValue="int" @bind-Value="@fileSettings.NumofItems" min=0 id="max-items"
-            class="bg-indigo-900 w-20 rounded-md appearance-none">
-        </InputNumber>
-        <div class="ml-2" @onmouseenter="ItemToolTip" @onmouseleave="ItemToolTip">
-            <Blazor.Heroicons.Mini.InformationCircleIcon class="w-5 h-5" />
-            <ToolTip ShowToolTip="showItemsToolTip">The maximum number of items that can be stored in the file
-                system. 0
-                is Unlimited</ToolTip>
-        </div>
-        @if (fileSettings.UnlimitedItems)
-        {
-            <span class="text-green-600 ml-3 ">(Unlimited)</span>
-        }
-    </div>
-    <div class="flex items-center p-2">
-        <div>Total Storage</div>
-    </div>
-</EditForm>
-<button class="rounded-md bg-indigo-900 w-24 h-12" type="submit">Submit</button>
+<div @attributes="AdditionalAttributes">
 
+    <EditForm class="mt-9 text-lg leading-relaxed justify-evenly bg-slate-900 rounded-lg inline-block w-[450px] h-52"
+        Model="@fileSettings" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <div class="text-2xl text-center p-3">File Settings</div>
+        <div class="flex items-center p-2">
+            <label class="mr-2" for="max-items">Num of Items: </label>
+            <InputNumber TValue="int" @bind-Value="@fileSettings.NumofItems" min=0 id="max-items"
+                class="bg-indigo-900 w-20 rounded-md appearance-none">
+            </InputNumber>
+            <div class="ml-2" @onmouseenter="ItemToolTip" @onmouseleave="ItemToolTip">
+                <Blazor.Heroicons.Mini.InformationCircleIcon class="w-5 h-5" />
+                <ToolTip ShowToolTip="showItemsToolTip">The maximum number of items that can be stored in the file
+                    system. 0
+                    is Unlimited</ToolTip>
+            </div>
+            @if (fileSettings.UnlimitedItems)
+            {
+                <span class="text-green-600 ml-3 ">(Unlimited)</span>
+            }
+        </div>
+        <div class="flex items-center p-2">
+            <div>Total Storage</div>
+        </div>
+    </EditForm>
+    <button class="rounded-md bg-indigo-900 w-24 h-12" type="submit">Submit</button>
+
+</div>
 @code
 {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
     private bool showItemsToolTip = false;
     private FileSettingsModel fileSettings = new();
     private class FileSettingsModel

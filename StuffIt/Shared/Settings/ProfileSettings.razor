@@ -1,5 +1,81 @@
-﻿<h3>Profile</h3>
+﻿<div @attributes="AdditionalAttributes">
+    @if (IsSubmitted)
+    {
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">Your profile has been updated.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path
+                        d="M14.348 5.652a.999.999 0 1 0-1.414 1.414L11 7.414l-1.934 1.934a.999.999 0 1 0 1.414 1.414L12.414 9l1.934 1.934a.999.999 0 1 0 1.414-1.414L13.828 9l1.52-1.52a.999.999 0 0 0 0-1.414z" />
+                </svg>
+            </span>
+        </div>
+    }
 
+    <EditForm Model="@profile" OnValidSubmit="HandleValidSubmit" class="bg-slate-900 rounded-lg bg-opacity-50 p-6">
+        <div class="mb-4">
+            <label class="block font-bold mb-2" for="username">
+                Username
+            </label>
+            <InputText @bind-Value="profile.Username"
+                class="shado bg-indigo-900 appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="username" type="text" placeholder="Username" />
+        </div>
+        <div class="mb-4">
+            <label class="block font-bold mb-2" for="email">
+                Email
+            </label>
+            <InputText @bind-Value="profile.Email"
+                class="shadow bg-indigo-900 appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="email" type="email" placeholder="Email"/>
+        </div>
+        <div class="mb-4">
+            <label class="block font-bold mb-2" for="password">
+                Password
+            </label>
+            <InputText @bind-Value="profile.Password"
+                class="shadow bg-indigo-900 appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="password" type="password" placeholder="Password"/>
+        </div>
+        <div class="mb-4">
+            <label class="block font-bold mb-2" for="confirmPassword">
+                Confirm Password
+            </label>
+            <InputText @bind-Value="profile.ConfirmPassword"
+                class="shadow bg-indigo-900 appearance-none rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="confirmPassword" type="password" placeholder="Confirm Password"/>
+        </div>
+        <div class="flex items-center justify-between">
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit">
+                Save
+            </button>
+        </div>
+    </EditForm>
+</div>
 @code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    private Profile profile = new();
 
+    private class Profile
+    {
+        public string? Username { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public string? ConfirmPassword { get; set; }
+    }
+    private bool IsSubmitted { get; set; }
+
+
+    private void HandleValidSubmit()
+    {
+        // Handle form submission here
+
+        IsSubmitted = true;
+    }
 }
