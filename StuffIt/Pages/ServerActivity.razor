@@ -1,11 +1,13 @@
 ﻿@page "/serverActivity"
 @using System.Collections.Generic
 @using System.Linq
+@using StuffIt.Shared.ServerActivity
 
 
 <h1 class="text-2xl font-bold mb-4">Activity</h1>
 
 <div class="grid grid-cols-2 gap-4">
+
     <div class="bg-slate-900 rounded-lg shadow-lg p-4 bg-opacity-50">
         <h2 class="text-lg font-bold mb-4">Total Bytes Written and Read</h2>
         <div class="flex justify-between">
@@ -19,6 +21,7 @@
             </div>
         </div>
     </div>
+
     <div class="bg-slate-900 rounded-lg shadow-lg p-4 bg-opacity-50">
         <h2 class="text-lg font-bold mb-4">Top Users by Write and Read Activity</h2>
         <table class="w-full">
@@ -41,75 +44,15 @@
             </tbody>
         </table>
     </div>
-    <div>
-        <button class="bg-red-500 rounded-md p-3" Clicked="@(async () => await HandleRedraw())">Redraw</button>
-        <LineChart @ref="lineChart" TItem="double" />
+    <div class="shadow-lg bg-slate-900 bg-opacity-50 rounded-lg p-4">
+        <RWLineGraph />
+    </div>
+    <div class="shadow-lg bg-slate-900 bg-opacity-50 rounded-lg p-4">
+        <RvWDonutGraph />
     </div>
 </div>
+
 @code {
-    LineChart<double>? lineChart;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await HandleRedraw();
-        }
-    }
-
-    async Task HandleRedraw()
-    {
-        if (lineChart is null)
-        {
-            return;
-        }
-        await lineChart.Clear();
-
-        await lineChart.AddLabelsDatasetsAndUpdate(Labels, GetLineChartDataset());
-    }
-
-    LineChartDataset<double> GetLineChartDataset()
-    {
-        return new LineChartDataset<double>
-            {
-                Label = "# of randoms",
-                Data = RandomizeData(),
-                BackgroundColor = backgroundColors,
-                BorderColor = borderColors,
-                Fill = true,
-                PointRadius = 3,
-                CubicInterpolationMode = "monotone",
-            };
-    }
-
-    string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
-    List<string> backgroundColors = new List<string> { ChartColor.FromRgba( 255, 99, 132, 0.2f ), ChartColor.FromRgba( 54,
-162, 235, 0.2f ), ChartColor.FromRgba( 255, 206, 86, 0.2f ), ChartColor.FromRgba( 75, 192, 192, 0.2f ),
-ChartColor.FromRgba( 153, 102, 255, 0.2f ), ChartColor.FromRgba( 255, 159, 64, 0.2f ) };
-    List<string> borderColors = new List<string> { ChartColor.FromRgba( 255, 99, 132, 1f ), ChartColor.FromRgba( 54, 162,
-235, 1f ), ChartColor.FromRgba( 255, 206, 86, 1f ), ChartColor.FromRgba( 75, 192, 192, 1f ), ChartColor.FromRgba( 153,
-102, 255, 1f ), ChartColor.FromRgba( 255, 159, 64, 1f ) };
-
-    List<double> RandomizeData()
-    {
-        var r = new Random(DateTime.Now.Millisecond);
-
-        return new List<double> {
-r.Next( 3, 50 ) * r.NextDouble(),
-r.Next( 3, 50 ) * r.NextDouble(),
-r.Next( 3, 50 ) * r.NextDouble(),
-r.Next( 3, 50 ) * r.NextDouble(),
-r.Next( 3, 50 ) * r.NextDouble(),
-r.Next( 3, 50 ) * r.NextDouble() };
-    }
-    private List<UserActivity> UserActivityList = new List<UserActivity>
-{
-new UserActivity { Name = "John", BytesWritten = 1000, BytesRead = 500 },
-new UserActivity { Name = "Jane", BytesWritten = 2000, BytesRead = 1000 },
-new UserActivity { Name = "Bob", BytesWritten = 500, BytesRead = 1500 },
-new UserActivity { Name = "Alice", BytesWritten = 1500, BytesRead = 2000 },
-};
-
     private int TotalBytesWritten => UserActivityList.Sum(u => u.BytesWritten);
     private int TotalBytesRead => UserActivityList.Sum(u => u.BytesRead);
 
@@ -121,4 +64,11 @@ new UserActivity { Name = "Alice", BytesWritten = 1500, BytesRead = 2000 },
         public int BytesWritten { get; set; }
         public int BytesRead { get; set; }
     }
+    private List<UserActivity> UserActivityList = new List<UserActivity>
+    {
+        new UserActivity { Name = "John", BytesWritten = 1000, BytesRead = 500 },
+        new UserActivity { Name = "Jane", BytesWritten = 2000, BytesRead = 1000 },
+        new UserActivity { Name = "Bob", BytesWritten = 500, BytesRead = 1500 },
+        new UserActivity { Name = "Alice", BytesWritten = 1500, BytesRead = 2000 },
+    };
 }
