@@ -1,0 +1,88 @@
+﻿<h2 class="text-lg font-bold mb-4">Read/Write Activity</h2>
+<LineChart class=" w-6 h-6" @ref="lineChart" TItem="double">
+    <LineChartDataset TItem="double" Dataset="GetLineChartDataset()" />
+    <LineChartDataset TItem="double" Dataset="GetReadLineChartDataset()" />
+</LineChart>
+@code {
+    LineChart<double>? lineChart;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await HandleRedraw();
+        }
+    }
+
+    async Task HandleRedraw()
+    {
+        if (lineChart is null)
+        {
+            return;
+        }
+        await lineChart.Clear();
+
+        await lineChart.AddLabelsDatasetsAndUpdate(Labels, GetLineChartDataset(), GetReadLineChartDataset());
+    }
+    LineChartDataset<double> GetLineChartDataset()
+    {
+        return new LineChartDataset<double>
+            {
+                Label = "Write",
+                Data = RandomizeData(),
+                BackgroundColor = backgroundColors,
+                BorderColor = borderColors,
+                Fill = true,
+                PointRadius = 3,
+                CubicInterpolationMode = "monotone",
+            };
+    }
+
+    LineChartDataset<double> GetReadLineChartDataset()
+    {
+        return new LineChartDataset<double>
+            {
+                Label = "Read",
+                Data = RandomizeData2(),
+                BackgroundColor = backgroundColors,
+                BorderColor = borderColors,
+                Fill = true,
+                PointRadius = 3,
+                CubicInterpolationMode = "monotone",
+            };
+    }
+
+    string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+    List<string> backgroundColors = new List<string> { ChartColor.FromRgba( 255, 99, 132, 0.2f ), ChartColor.FromRgba( 54,
+162, 235, 0.2f ), ChartColor.FromRgba( 255, 206, 86, 0.2f ), ChartColor.FromRgba( 75, 192, 192, 0.2f ),
+ChartColor.FromRgba( 153, 102, 255, 0.2f ), ChartColor.FromRgba( 255, 159, 64, 0.2f ) };
+    List<string> borderColors = new List<string> { ChartColor.FromRgba( 255, 99, 132, 1f ), ChartColor.FromRgba( 54, 162,
+235, 1f ), ChartColor.FromRgba( 255, 206, 86, 1f ), ChartColor.FromRgba( 75, 192, 192, 1f ), ChartColor.FromRgba( 153,
+102, 255, 1f ), ChartColor.FromRgba( 255, 159, 64, 1f ) };
+
+    List<double> RandomizeData()
+    {
+        var r = new Random(DateTime.Now.Millisecond);
+
+        return new List<double> {
+r.Next( 2, 20 ) * r.NextDouble(),
+r.Next( 2, 20 ) * r.NextDouble(),
+r.Next( 2, 20 ) * r.NextDouble(),
+r.Next( 2, 20 ) * r.NextDouble(),
+r.Next( 2, 20 ) * r.NextDouble(),
+r.Next( 2, 20 ) * r.NextDouble() };
+    }
+    List<double> RandomizeData2()
+    {
+        var r = new Random(DateTime.Now.Millisecond);
+
+        return new List<double> {
+r.Next( 6, 55 ) * r.NextDouble(),
+r.Next( 6, 55 ) * r.NextDouble(),
+r.Next( 6, 55 ) * r.NextDouble(),
+r.Next( 6, 55 ) * r.NextDouble(),
+r.Next( 6, 55 ) * r.NextDouble(),
+r.Next( 6, 55 ) * r.NextDouble() };
+    }
+
+}
