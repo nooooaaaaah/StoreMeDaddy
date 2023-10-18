@@ -1,4 +1,14 @@
-﻿@if (collapseNavMenu)
+﻿@if (!collapseNavMenu)
+{
+    <button
+    class="p-3 h-fit bg-opacity-0 rounded-sm hover:bg-indigo-900 hover:bg-opacity-50 hover:text-indigo-950 hover:opacity-50"
+    @onclick="ToggleNavMenu">
+    <div class="h-screen">
+        <Bars3Icon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+    </div>
+</button>
+}
+@if (collapseNavMenu)
 {
     <div class="w-52 h-auto bg-indigo-950 bg-opacity-50">
     <div class="flex p-3 text-justify items-center">
@@ -31,21 +41,16 @@
             <CogIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
             <span class="ml-3 text-indigo-100">Settings</span>
         </NavLink>
-
     </nav>
 </div>
+    <button
+        class="p-3 h-fit rounded-sm bg-indigo-950 hover:bg-indigo-900 bg-opacity-50 hover:bg-opacity-20 hover:text-indigo-950 hover:opacity-50"
+        @onclick="ToggleNavMenu">
+        <div class="h-screen">
+            <XCircleIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+        </div>
+    </button>
 }
-
-<button class="p-3 h-auto bg-opacity-0 bg-indigo-950 hover:bg-indigo-950 hover:bg-opacity-50" @onclick="ToggleNavMenu">
-    @if (collapseNavMenu)
-    {
-        <ChevronLeftIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
-    }
-    else
-    {
-        <ChevronRightIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
-    }
-</button>
 
 @code {
     private bool collapseNavMenu = true;
