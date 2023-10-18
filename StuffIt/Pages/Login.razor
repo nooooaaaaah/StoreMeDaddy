@@ -1,0 +1,120 @@
+﻿@page "/login"
+<div class="min-h-screen flex flex-col justify-center sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-indigo-400">
+            Sign in to your account
+        </h2>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-slate-900 bg-opacity-50 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <img class="w-80" src="/favicon.png" alt="Logo">
+            <form class="space-y-6" action="#" method="POST">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-indigo-700">
+                        Email address
+                    </label>
+                    <div class="mt-1">
+                        <input id="email" name="email" type="email" autocomplete="email" required
+                            class="appearance-none block w-full px-3 py-2 border border-indigo-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-indigo-700">
+                        Password
+                    </label>
+                    <div class="mt-1">
+                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                            class="appearance-none block w-full px-3 py-2 border border-indigo-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="remember_me" type="checkbox"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-indigo-300 rounded">
+                        <label for="remember_me" class="ml-2 block text-sm text-indigo-100">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                            Forgot your password?
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit"
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <!-- Heroicon name: solid/lock-closed -->
+                            <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M10 2a3 3 0 0 0-3 3v2H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3h-2V5a3 3 0 0 0-3-3h-2zm-3 5h8v6a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V7zm3-2a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0V5z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        Sign in
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span
+                            class="px-4 pt-2 pb-2 rounded-md bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-pink-700 via-transparent to-purple-700 text-indigo-200">
+                            Or continue with
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-3 gap-3">
+                    <div>
+                        <a href="#"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <span class="sr-only">Sign in with Facebook</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M17.5 3H2.5A1.5 1.5 0 0 0 1 4.5v11A1.5 1.5 0 0 0 2.5 17h7.1v-6.5H7.5v-2h2.6V8.5c0-2.6 1.6-4 3.9-4 .9 0 1.8.1 2.1.1v2.7l-1.4.1c-1.1 0-1.3.5-1.3 1.3v1.7h2.6l-.3 2.5h-2.3V17h4a1.5 1.5 0 0 0 1.5-1.5v-11a1.5 1.5 0 0 0-1.5-1.5z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <span class="sr-only">Sign in with Twitter</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M17.97 5.01c.008.17.008.34.008.51 0 5.19-3.95 11.16-11.16 11.16-2.22 0-4.3-.65-6.05-1.77.31.04.62.05.94.05 1.84 0 3.53-.62 4.87-1.67-1.72-.03-3.17-1.16-3.67-2.71.24.05.48.08.73.08.35 0 .7-.05 1.03-.14-1.78-.36-3.12-1.94-3.12-3.84v-.05c.52.29 1.12.47 1.75.49-.98-.65-1.63-1.76-1.63-3.02 0-.67.18-1.3.49-1.84 1.8 2.21 4.49 3.66 7.54 3.81-.06-.29-.09-.59-.09-.9 0-2.18 1.77-3.95 3.95-3.95 1.14 0 2.17.48 2.9 1.25.9-.18 1.74-.51 2.5-.97-.3.93-.93 1.71-1.76 2.21.81-.1 1.58-.31 2.3-.62-.54.79-1.23 1.48-2.02 2.03z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <span class="sr-only">Sign in with GitHub</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.167 6.839 9.49.5.092.683-.217.683-.483 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.338-3.369-1.338-.455-1.16-1.11-1.468-1.11-1.468-.908-.62.069-.607.069-.607 1.004.07 1.532 1.03 1.532 1.03.892 1.527 2.34 1.086 2.91.831.091-.645.35-1.086.636-1.336-2.22-.25-4.555-1.11-4.555-4.937 0-1.09.39-1.984 1.03-2.683-.103-.25-.448-1.266.098-2.637 0 0 .837-.268 2.74 1.02.794-.22 1.64-.33 2.485-.33.845 0 1.692.11 2.485.33 1.903-1.288 2.74-1.02 2.74-1.02.546 1.37.202 2.387.1 2.637.64.7 1.03 1.593 1.03 2.683 0 3.837-2.337 4.687-4.567 4.937.359.307.678.915.678 1.846 0 1.334-.013 2.41-.013 2.737 0 .267.18.575.688.482C17.135 18.165 20 14.418 20 10c0-5.523-4.477-10-10-10z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿<div class="bg-slate-900 rounded-lg shadow-lg p-4 bg-opacity-50">
+    <h2 class="text-lg font-bold mb-4">Server Quicklook</h2>
+    <div class="flex justify-between">
+        <div class="w-1/2">
+            <p class="text-sm font-bold">Uptime</p>
+            <p class="text-3xl font-bold">@upTimeModel.UpTime Hrs</p>
+        </div>
+        <div class="w-1/2">
+            <p class="text-sm font-bold">CPU Usage</p>
+            <p class="text-3xl font-bold">@upTimeModel.CpuUsage%</p>
+        </div>
+        <div class="w-1/2">
+            <p class="text-sm font-bold">Memory Usage</p>
+            <p class="text-3xl font-bold">@upTimeModel.MemoryUsage%</p>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private UpTimeModel upTimeModel = new();
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateUpTime();
+    }
+    private async Task UpdateUpTime()
+    {
+        upTimeModel.UpTime = random.Next(1, 231);
+        upTimeModel.CpuUsage = random.Next(1, 101);
+        upTimeModel.MemoryUsage = random.Next(1, 101);
+        await Task.Delay(1000);
+        await UpdateUpTime();
+    }
+    Random random = new();
+    //set the value of UpTime to a random number between 1 and 231
+    public class UpTimeModel
+    {
+        public int UpTime { get; set; }
+        public int CpuUsage { get; set; }
+        public int MemoryUsage { get; set; }
+    }
+}
