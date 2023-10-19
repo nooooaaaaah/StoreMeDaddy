@@ -14,6 +14,8 @@ builder.Services
     .AddBlazorise()
     .AddTailwindProviders()
     .AddFontAwesomeIcons();
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Set the environment to Development

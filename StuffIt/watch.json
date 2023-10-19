@@ -1,0 +1,6 @@
+{
+  "verbose": false,
+  "watch": ["**/*.cs", "**/*.razor"],
+  "excluded": ["bin/**/*", "obj/**/*", "node_modules/**/*"],
+  "launchProfile": "Web"
+}

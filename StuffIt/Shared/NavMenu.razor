@@ -16,7 +16,7 @@
         <span class="text-3xl ml-4 text-indigo-100">Stuff It</span>
     </div>
 
-    <nav class="mt-12">
+    <nav class="mt-12 flex-col">
         <NavLink class="flex p-3 hover:bg-indigo-900" href="" Match="NavLinkMatch.All" ActiveClass="bg-indigo-900">
             <HomeModernIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
             <span aria-label="Home" class="ml-3 text-indigo-100">Home</span>
@@ -41,7 +41,12 @@
             <CogIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
             <span class="ml-3 text-indigo-100">Settings</span>
         </NavLink>
+
+        <div class="p-3">
+            <StuffIt.Shared.Authorization.LoggedInUser />
+        </div>
     </nav>
+
 </div>
     <button
         class="p-3 h-fit rounded-sm bg-indigo-950 hover:bg-indigo-900 bg-opacity-50 hover:bg-opacity-20 hover:text-indigo-950 hover:opacity-50"

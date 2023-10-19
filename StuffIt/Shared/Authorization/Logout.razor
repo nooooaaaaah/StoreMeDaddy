@@ -1,5 +1,23 @@
-﻿<h3>Logout</h3>
+﻿@page "/logout"
+@using System.Security.Claims
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<button class="rounded-md bg-indigo-800 text-indigo-200 mr-3 px-2" @onclick="LogoutUser">Logout</button>
 
 @code {
+    private async Task LogoutUser()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
 
+        if (user.Identity.IsAuthenticated)
+        {
+            var post = await HttpClient.PostAsync("api/logout", null);
+            post.EnsureSuccessStatusCode();
+            await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        }
+        NavigationManager.NavigateTo("/");
+    }
 }
