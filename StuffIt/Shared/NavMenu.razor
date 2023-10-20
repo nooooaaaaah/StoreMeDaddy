@@ -1,23 +1,23 @@
 ﻿@if (!collapseNavMenu)
 {
     <button
-    class="p-3 h-fit bg-opacity-0 rounded-sm hover:bg-indigo-900 hover:bg-opacity-50 hover:text-indigo-950 hover:opacity-50"
+    class="bg-indigo-950 bg-opacity-30 p-3 min-h-screen hover:bg-indigo-900 hover:bg-opacity-50 hover:text-indigo-950 hover:opacity-50"
     @onclick="ToggleNavMenu">
-    <div class="h-screen">
-        <Bars3Icon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
-    </div>
+    <ChevronDoubleRightIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
+
 </button>
 }
 @if (collapseNavMenu)
 {
-    <div class="w-52 h-auto bg-indigo-950 bg-opacity-50">
-    <div class="flex p-3 text-justify items-center">
+    <div class="flex flex-col w-48 bg-indigo-950 bg-opacity-50 p-3">
+
+    <div class="md:fixed left-0 flex p-3 text-justify items-center">
         <img src="favicon.png" alt="Logo" class="h-10 w-10" />
         <span class="text-3xl ml-4 text-indigo-100">Stuff It</span>
     </div>
 
-    <nav class="mt-12 flex-col">
-        <NavLink class="flex p-3 hover:bg-indigo-900" href="" Match="NavLinkMatch.All" ActiveClass="bg-indigo-900">
+    <nav class="mt-28 md:fixed h-96 overflow-y-auto">
+        <NavLink class="flex p-3 pe-6 hover:bg-indigo-900" href="" Match="NavLinkMatch.All" ActiveClass="bg-indigo-900">
             <HomeModernIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
             <span aria-label="Home" class="ml-3 text-indigo-100">Home</span>
         </NavLink>
@@ -41,19 +41,17 @@
             <CogIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
             <span class="ml-3 text-indigo-100">Settings</span>
         </NavLink>
-
-        <div class="p-3">
-            <StuffIt.Shared.Authorization.LoggedInUser />
-        </div>
     </nav>
 
+    <div class="p-3 md:fixed bottom-0">
+        <StuffIt.Shared.Authorization.LoggedInUser />
+    </div>
 </div>
     <button
-        class="p-3 h-fit rounded-sm bg-indigo-950 hover:bg-indigo-900 bg-opacity-50 hover:bg-opacity-20 hover:text-indigo-950 hover:opacity-50"
+        class="relative px-5 min-h-screen rounded-sm bg-indigo-950 hover:bg-indigo-900 bg-opacity-50 hover:bg-opacity-20 hover:text-indigo-950 hover:opacity-50"
         @onclick="ToggleNavMenu">
-        <div class="h-screen">
-            <XCircleIcon class="w-6 text-lg text-indigo-100" aria-hidden="true" />
-        </div>
+        <ChevronDoubleLeftIcon class="absolute top-1/2 left-2 transform -translate-y-1/2 w-6 text-lg text-indigo-100"
+            aria-hidden="true" />
     </button>
 }
 
@@ -61,7 +59,6 @@
     private bool collapseNavMenu = true;
     private void ToggleNavMenu(EventArgs e)
     {
-        Console.WriteLine("Toggling Nav Menu");
         collapseNavMenu = !collapseNavMenu;
     }
 }
