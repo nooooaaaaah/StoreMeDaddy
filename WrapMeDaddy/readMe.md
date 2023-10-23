@@ -1,6 +1,6 @@
 # WrapMeDaddy: A library for StoreMeDaddy
 
-- A library that helps you integrate the StoreMeDaddy API into your application.
+- Helps you integrate the StoreMeDaddy API into your application.
 
 ## Features
 
