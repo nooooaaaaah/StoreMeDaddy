@@ -41,8 +41,8 @@ In your program.cs file, initialize the StoryMeDaddy service:
 ```csharp
 using WrapMeDaddy;
 
+// ...other services
 builder.Services.AddWrapMeDaddy(<Your API Key>)
-
 ```
 
 ### User Management
@@ -52,13 +52,12 @@ using WrapMeDaddy;
 
 // Use the default admin account
 var user = AuthMeDaddy("admin", "admin");
+
 // Creates a new user and returns the user object
-var user = new WMDUser
-{
-    Username = "test",
-    Password = "test",
-    Email = "test@test.com",
-};
+var user = CreateWmdUser("Username", "Password", "Email@email.com");
+
+// Authorize a user
+var user = AuthMeDaddy("Username", "Password");
 
 // Edit a user
 user.Username = "newUsername";
@@ -70,12 +69,7 @@ await user.Delete();
 
 // Create an admin user
 // Once created admin accounts can only be edited or deleted through the StuffIt GUI or CLI
-var admin = new WMDAdmin
-{
-    Username = "admin",
-    Password = "admin",
-    Email = "admin@admin.com",
-};
+var admin CreateWmdAdmin(Username = "admin", Password = "admin", Email = "admin@admin.com");
 ```
 
 ### CRUD Management
@@ -83,11 +77,9 @@ var admin = new WMDAdmin
 Depending on use case you can either create a user or use the default admin account
 
 ```csharp
-using WrapMeDaddy; 
-
+using WrapMeDaddy;
 
 // Upload a file
-
 var metaData = new WmdMetaDataDTO
 {
     Name = "File Name",
@@ -104,7 +96,7 @@ var wmdFile = new WmdFileDTO
     MetaData = metaData,
 };
 
-user.UploadEnsureSuccess(wmdFile); // returns true or throws an exception
+user.UploadEnsureSuccess(wmdFile);
 
 // Retrieve metaData for a uploaded file by Name or Id
 WmdMetaData metaData = user.GetFile("File Name");
@@ -144,6 +136,5 @@ metaData.RemoveTags(new List<string> { "newTag1", "newTag2" });
 
 // Delete a file
 DeleteFile(metaData.Id);
-
 
 ```
