@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffIt", "StuffIt\StuffIt.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WrapMeDaddy", "WrapMeDaddy\WrapMeDaddy.csproj", "{8FDF1DF8-F29C-4505-ACD6-1B0D6D67E083}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffitCLI", "StuffitCLI\StuffitCLI.csproj", "{794A9BFE-39A1-4FB8-BE0D-1514319C7896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,5 +34,9 @@ Global
 		{8FDF1DF8-F29C-4505-ACD6-1B0D6D67E083}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FDF1DF8-F29C-4505-ACD6-1B0D6D67E083}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FDF1DF8-F29C-4505-ACD6-1B0D6D67E083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794A9BFE-39A1-4FB8-BE0D-1514319C7896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794A9BFE-39A1-4FB8-BE0D-1514319C7896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794A9BFE-39A1-4FB8-BE0D-1514319C7896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794A9BFE-39A1-4FB8-BE0D-1514319C7896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

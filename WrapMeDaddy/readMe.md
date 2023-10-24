@@ -67,9 +67,9 @@ user.Password = "newPassword";
 // Delete a user
 await user.Delete(); 
 
-// Create an admin user
-// Once created admin accounts can only be edited or deleted through the StuffIt GUI or CLI
-var admin CreateWmdAdmin(Username = "admin", Password = "admin", Email = "admin@admin.com");
+// Create an administrator account
+// Once created admin accounts can't be changed and only deleted through the StuffIt GUI or CLI
+var admin = CreateWmdAdmin("Admin", "Password", "Email@admin.com");
 ```
 
 ### CRUD Management
