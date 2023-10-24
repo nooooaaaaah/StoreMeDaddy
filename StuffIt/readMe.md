@@ -7,7 +7,7 @@
 
 - User Directory
 - Server Activity
-- Basic File Managment
+- Basic File Management
 - Server Settings
 
 ## Getting Started
@@ -23,10 +23,10 @@ https://localhost:7277
 https://<Server IP Address>:7277
 ```
 
-This will bring you to the intial login screen
+This will bring you to the initial login screen
 
 - The default admin credentials are Username: admin; Password: daddy;
 
-It is recommended to change the default credientials upon inital setup
+It is recommended to change the default credentials upon initial setup
 
-From there you can explore the features incuded in StuffIt
+From there you can explore the features incudes in StuffIt
